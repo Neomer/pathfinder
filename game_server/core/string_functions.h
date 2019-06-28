@@ -1,0 +1,8 @@
+//
+// Created by kir on 28.06.19.
+//
+
+#ifndef GAME_SERVER_STRING_FUNCTIONS_H
+#define GAME_SERVER_STRING_FUNCTIONS_H
+
+#endif //GAME_SERVER_STRING_FUNCTIONS_H
