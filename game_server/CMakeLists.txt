@@ -3,7 +3,8 @@ project(game_server)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(game_server main.cpp core/string_functions.h)
+add_executable(game_server main.cpp core/string_functions.h
+        Logger.h Logger.cpp)
 
 SET(CMAKE_CXX_FLAGS -pthread)
 if(WIN32)

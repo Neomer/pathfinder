@@ -1,0 +1,3 @@
+/home/kir/projects/pathfinder/game_server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/kir/projects/pathfinder/game_server/cmake-build-debug/CMakeFiles/game_server.dir
+/home/kir/projects/pathfinder/game_server/cmake-build-debug/CMakeFiles/edit_cache.dir
