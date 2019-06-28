@@ -1,3 +1,9 @@
 [submodule "game_server/modules/json"]
 	path = game_server/modules/json
 	url = https://github.com/nlohmann/json.git
+[submodule "game_server/modules/cppcodec"]
+	path = game_server/modules/cppcodec
+	url = https://github.com/tplgy/cppcodec.git
+[submodule "game_server/modules/digestpp"]
+	path = game_server/modules/digestpp
+	url = https://github.com/kerukuro/digestpp.git
