@@ -4,6 +4,6 @@
 
 #include "MonsterCard.h"
 
-CardMetadata::CardType MonsterCard::getCardType() const {
+CardMetadata::CardType MonsterCardMetadata::getCardType() const {
     return CardType::Monster;
 }

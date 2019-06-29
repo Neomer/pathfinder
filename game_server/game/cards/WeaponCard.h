@@ -7,7 +7,7 @@
 
 #include "HandTakableCardMetadata.h"
 
-class WeaponCard : public HandTakableCardMetadata
+class WeaponCardMetadata : public HandTakableCardMetadata
 {
 public:
     CardType getCardType() const final;

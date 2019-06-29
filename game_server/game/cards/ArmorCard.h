@@ -7,7 +7,7 @@
 
 #include "HandTakableCardMetadata.h"
 
-class ArmorCard : public HandTakableCardMetadata
+class ArmorCardMetadata : public HandTakableCardMetadata
 {
 public:
     CardType getCardType() const override;

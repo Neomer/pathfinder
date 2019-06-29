@@ -23,3 +23,14 @@ const std::vector<CardMetadata::CardAttribute> &CardMetadata::getAttributes() co
 void CardMetadata::load() {
     fillAttributes(_attributes);
 }
+
+const char *CardMetadata::getDescription() const {
+    return "";
+}
+
+void CardMetadata::toJson(nlohmann::json &json) const {
+    json["description"] = getDescription();
+    json["typeId"] = (int)getCardType();
+    json["typeName"] = getTypeName();
+    json["attributes"] = nlohmann::json::array();
+}

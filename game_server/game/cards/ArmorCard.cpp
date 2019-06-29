@@ -4,6 +4,6 @@
 
 #include "ArmorCard.h"
 
-CardMetadata::CardType ArmorCard::getCardType() const {
+CardMetadata::CardType ArmorCardMetadata::getCardType() const {
     return CardType::Armor;
 }

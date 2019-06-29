@@ -4,6 +4,6 @@
 
 #include "ThingCard.h"
 
-CardMetadata::CardType ThingCard::getCardType() const {
+CardMetadata::CardType ThingCardMetadata::getCardType() const {
     return CardType::Thing;
 }

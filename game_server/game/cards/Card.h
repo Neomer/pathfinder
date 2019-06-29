@@ -8,13 +8,12 @@
 #include <memory>
 #include <string_view>
 #include <vector>
-#include "../../modules/json/single_include/nlohmann/json.hpp"
 #include "Metadata.h"
 
 class Card
 {
 public:
-    virtual ~Card();
+    virtual ~Card() {}
 
     virtual int getTypeId() const = 0;
 
@@ -87,13 +86,19 @@ public:
 
     virtual std::shared_ptr<Card> createInstance() const = 0;
 
-    virtual std::string_view  getCardName() const = 0;
+    virtual std::string_view  getCardTitle() const = 0;
 
     virtual CardMetadata::CardType getCardType() const = 0;
+
+    virtual const char *getTypeName() const = 0;
+
+    virtual const char *getDescription() const;
 
     const std::vector<CardMetadata::CardAttribute> &getAttributes() const;
 
     bool hasAttribute(CardAttribute attribute) const;
+
+    void toJson(nlohmann::json &json) const override;
 
 protected:
     virtual void fillAttributes(std::vector<CardMetadata::CardAttribute> &attributes) = 0;

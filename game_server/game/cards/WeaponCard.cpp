@@ -4,6 +4,6 @@
 
 #include "WeaponCard.h"
 
-CardMetadata::CardType WeaponCard::getCardType() const {
+CardMetadata::CardType WeaponCardMetadata::getCardType() const {
     return CardType ::Weapon;
 }
