@@ -10,7 +10,7 @@ class TcpSocket;
 class IConnectionClosedListener
 {
 public:
-    void onConnectionClosed(const TcpSocket *socket);
+    virtual void onConnectionClosed(const TcpSocket *socket) = 0;
 };
 
 #endif //GAME_SERVER_ICONNECTIONCLOSEDLISTENER_H

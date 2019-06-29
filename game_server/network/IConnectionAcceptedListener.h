@@ -12,7 +12,7 @@ class TcpServer;
 class IConnectionAcceptedListener
 {
 public:
-    void onConnectionAccepted(const TcpServer *server, TcpSocket *socket);
+   virtual void onConnectionAccepted(const TcpServer *server, TcpSocket *socket) = 0;
 };
 
 #endif //GAME_SERVER_ICONNECTIONACCEPTEDLISTENER_H

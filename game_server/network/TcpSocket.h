@@ -8,15 +8,33 @@
 #include <inttypes.h>
 #include <thread>
 #include <atomic>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+
+class IConnectionClosedListener;
+
+class IDataArrivedListener;
 
 class TcpSocket
 {
 public:
+    using Package = std::pair<const char *, size_t>;
+
     explicit TcpSocket(int socketDescriptor);
 
     virtual ~TcpSocket();
 
     void close();
+
+    void setConnectionClosedListener(IConnectionClosedListener *listener);
+
+    void setDataArrivedListener(IDataArrivedListener *listener);
+
+protected:
+    bool prepareRawData(char **buffer, size_t *size);
+
+    void writeRawData(const char *data, size_t size);
 
 private:
     void readDataProc();
@@ -26,6 +44,13 @@ private:
 
     std::thread _readThread, _writeThread;
     std::atomic_bool _run;
+
+    std::mutex _writeQueueMutex;
+    std::queue<Package> _writeQueue;
+    std::condition_variable _writeCondVar;
+
+    IConnectionClosedListener *_connectionClosedListener;
+    IDataArrivedListener * _dataArrivedListener;
 };
 
 
