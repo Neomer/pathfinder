@@ -29,7 +29,7 @@ public:
 
     void onConnectionClosed(const TcpSocket *socket) override;
 
-    void onDataArrived(const TcpSocket *socket, nlohmann::json &json) override;
+    void onDataArrived(TcpSocket *socket, nlohmann::json &json) override;
 
 private:
     void broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json);

@@ -12,7 +12,7 @@ class TcpSocket;
 class IDataArrivedListener
 {
 public:
-    virtual void onDataArrived(const TcpSocket *socket, nlohmann::json &json) = 0;
+    virtual void onDataArrived(TcpSocket *socket, nlohmann::json &json) = 0;
 };
 
 

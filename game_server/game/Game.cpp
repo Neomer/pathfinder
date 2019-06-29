@@ -60,23 +60,32 @@ void Game::onConnectionClosed(const TcpSocket *socket) {
     */
 }
 
-void Game::onDataArrived(const TcpSocket *socket, nlohmann::json &json) {
+void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
+    auto player = getPlayerBySocket(socket);
+    if (player == nullptr) {
+        Logger::getInstace().log("User not found");
+        return;
+    }
+    nlohmann::json answer;
     int eventId = json["eventId"];
     switch (eventId) {
         case 1:
         {
-            auto player = getPlayerBySocket(socket);
-            if (player != nullptr) {
-                player->setName(json["data"]["id"]);
-                nlohmann::json answer;
-                answer["eventId"] = 1;
-                answer["user"] = player->getName();
-                answer["userPerson"] = "Харск";
-                broadcast(_spectators, answer);
-            }
+            player->setName(json["data"]["id"]);
+            answer["eventId"] = 1;
+            answer["user"] = player->getName();
+            answer["userPerson"] = "Харск";
+            broadcast(_spectators, answer);
+            break;
+        }
+
+        case 2:
+        {
+
             break;
         }
     }
+    socket->write(answer);
 }
 
 void Game::broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json) {
