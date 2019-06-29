@@ -19,12 +19,15 @@ public:
 
 };
 
+class ActiveCard : public Card
+{
+public:
+
+};
 
 class CardMetadata : public Metadata
 {
 public:
-    CardMetadata();
-
     enum class CardType
     {
         Weapon,     // Оружие
@@ -35,8 +38,35 @@ public:
         Blessing,   // Благословение
         Monster,    // Монстр
         Servant,    // Прислужник
-        Boss        // Босс
+        Boss,       // Босс
+        Scenario,   // Сценарий
+        Location,   // Локация
+        Barrier,    // Предграда
     };
+
+    virtual std::string_view  getCardTitle() const = 0;
+
+    virtual CardMetadata::CardType getCardType() const = 0;
+
+    virtual const char *getTypeName() const = 0;
+
+    virtual const char *getDescription() const;
+
+    virtual void load() = 0;
+
+    void toJson(nlohmann::json &json) const override;
+
+private:
+
+    static const char *cardTypeToString(CardType type);
+
+};
+
+
+class ActiveCardMetadata : public CardMetadata
+{
+public:
+    ActiveCardMetadata();
 
     enum class CardAttribute
     {
@@ -52,7 +82,7 @@ public:
         Psycho,     // Психика
 
         // -----Аттрибуты оружия ------
-                Sword,      // Меч
+        Sword,      // Меч
         Bow,        // Лук
         Mace,       // Булава
         Pole,       // Древковое оружие
@@ -70,6 +100,12 @@ public:
         TwoHand,    // Двуручное оружие
         Rare,       // Редкость
 
+        HeavyArmor, // Тяжелая броня
+        OneHand,    // Занятая рука
+        Shield,     // Щит
+
+        Decoration, // Украшение
+
     };
 
     enum class Skill
@@ -82,33 +118,23 @@ public:
         Charisma        // Харизма
     };
 
-    void load();
+    void load() override;
 
     virtual std::shared_ptr<Card> createInstance() const = 0;
 
-    virtual std::string_view  getCardTitle() const = 0;
-
-    virtual CardMetadata::CardType getCardType() const = 0;
-
-    virtual const char *getTypeName() const = 0;
-
-    virtual const char *getDescription() const;
-
-    const std::vector<CardMetadata::CardAttribute> &getAttributes() const;
+    const std::vector<ActiveCardMetadata::CardAttribute> &getAttributes() const;
 
     bool hasAttribute(CardAttribute attribute) const;
 
     void toJson(nlohmann::json &json) const override;
 
 protected:
-    virtual void fillAttributes(std::vector<CardMetadata::CardAttribute> &attributes) = 0;
+    virtual void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) = 0;
 
     static const char *attributeToString(CardAttribute attribute);
 
-    static const char *cardTypeToString(CardType type);
-
 private:
-    std::vector<CardMetadata::CardAttribute> _attributes;
+    std::vector<ActiveCardMetadata::CardAttribute> _attributes;
 };
 
 

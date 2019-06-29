@@ -4,11 +4,11 @@
 
 #include "Card.h"
 
-CardMetadata::CardMetadata() {
+ActiveCardMetadata::ActiveCardMetadata() {
 
 }
 
-bool CardMetadata::hasAttribute(CardMetadata::CardAttribute attribute) const {
+bool ActiveCardMetadata::hasAttribute(ActiveCardMetadata::CardAttribute attribute) const {
     auto it = std::find_if(_attributes.begin(), _attributes.end(),
                            [attribute](CardAttribute item) {
                                return item == attribute;
@@ -16,11 +16,11 @@ bool CardMetadata::hasAttribute(CardMetadata::CardAttribute attribute) const {
     return it != _attributes.end();
 }
 
-const std::vector<CardMetadata::CardAttribute> &CardMetadata::getAttributes() const {
+const std::vector<ActiveCardMetadata::CardAttribute> &ActiveCardMetadata::getAttributes() const {
     return _attributes;
 }
 
-void CardMetadata::load() {
+void ActiveCardMetadata::load() {
     fillAttributes(_attributes);
 }
 
@@ -32,15 +32,19 @@ void CardMetadata::toJson(nlohmann::json &json) const {
     json["description"] = getDescription();
     json["typeId"] = cardTypeToString(getCardType());
     json["typeName"] = getTypeName();
+    json["title"] = getCardTitle();
+}
+
+void ActiveCardMetadata::toJson(nlohmann::json &json) const {
+    CardMetadata::toJson(json);
     auto attrArray = nlohmann::json::array();
     for (auto attr : getAttributes()) {
         attrArray.push_back(attributeToString(attr));
     }
     json["attributes"] = attrArray;
-    json["title"] = getCardTitle();
 }
 
-const char *CardMetadata::attributeToString(CardAttribute attribute) {
+const char *ActiveCardMetadata::attributeToString(CardAttribute attribute) {
     switch (attribute) {
         case CardAttribute::Magic: return "Магия";
         case CardAttribute::Faith: return "Вера";

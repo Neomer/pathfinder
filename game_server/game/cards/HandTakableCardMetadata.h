@@ -7,7 +7,7 @@
 
 #include "Card.h"
 
-class HandTakableCardMetadata : public CardMetadata
+class HandTakableCardMetadata : public ActiveCardMetadata
 {
 public:
     virtual bool isBeginnerLevel() const = 0;

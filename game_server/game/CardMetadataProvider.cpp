@@ -51,12 +51,26 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 }
 
 #include "cards/spells/HealCard.h"
+#include "cards/armors/MagicChainMail.h"
+#include "cards/armors/MagicShield.h"
+#include "cards/things/AmuletOfLife.h"
+#include "cards/locations/ForestLocationCard.h"
+#include "cards/scenario/Rubiih.h"
 
 void CardMetadataProvider::init()
 {
     Logger::getInstace().log("Start cards metadata initialization");
 
     registerMetadata(new HealCardMetadata());
+
+    registerMetadata(new MagicChainMailMetadata());
+    registerMetadata(new MagicShieldMetadata());
+
+    registerMetadata(new AmuletOfLifeMetadata());
+
+    registerMetadata(new ForestLocationCardMetadata());
+
+    registerMetadata(new RubiihMetadata());
 
     for (auto metadata : _metadataVector) {
         metadata->load();

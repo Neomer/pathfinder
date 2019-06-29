@@ -4,6 +4,6 @@
 
 #include "SpellCard.h"
 
-CardMetadata::CardType SpellCardMetadata::getCardType() const {
+ActiveCardMetadata::CardType SpellCardMetadata::getCardType() const {
     return CardType::Spell;
 }

@@ -27,7 +27,7 @@ public:
     bool isBeginnerLevel() const override;
 
 protected:
-    void fillAttributes(std::vector<CardMetadata::CardAttribute> &attributes) override;
+    void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 };
 
 #endif //GAME_SERVER_HEALCARD_H

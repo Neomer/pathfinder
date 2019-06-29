@@ -20,7 +20,7 @@ int HealCardMetadata::TypeId() const {
     return 0;
 }
 
-void HealCardMetadata::fillAttributes(std::vector<CardMetadata::CardAttribute> &attributes) {
+void HealCardMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) {
     attributes.push_back(CardAttribute::Magic);
     attributes.push_back(CardAttribute::Faith);
     attributes.push_back(CardAttribute::Heal);

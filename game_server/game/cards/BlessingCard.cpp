@@ -4,6 +4,6 @@
 
 #include "BlessingCard.h"
 
-CardMetadata::CardType BlessingCardMetadata::getCardType() const {
+ActiveCardMetadata::CardType BlessingCardMetadata::getCardType() const {
     return CardType::Blessing;
 }

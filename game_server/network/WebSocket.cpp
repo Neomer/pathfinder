@@ -81,10 +81,6 @@ void WebSocket::writeRawData(std::string_view str) {
     }
     str.copy(data + startIdx, message_size);
     auto len = message_size + startIdx;
-    for (int i = 0; i < len; ++i) {
-        std::cout << std::hex << std::setw(2) << static_cast<uint8_t>(data[i]) << ' ';
-    }
-
     TcpSocket::writeRawData(data, len);
 }
 
