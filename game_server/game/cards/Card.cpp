@@ -30,7 +30,56 @@ const char *CardMetadata::getDescription() const {
 
 void CardMetadata::toJson(nlohmann::json &json) const {
     json["description"] = getDescription();
-    json["typeId"] = (int)getCardType();
+    json["typeId"] = cardTypeToString(getCardType());
     json["typeName"] = getTypeName();
-    json["attributes"] = nlohmann::json::array();
+    auto attrArray = nlohmann::json::array();
+    for (auto attr : getAttributes()) {
+        attrArray.push_back(attributeToString(attr));
+    }
+    json["attributes"] = attrArray;
+    json["title"] = getCardTitle();
+}
+
+const char *CardMetadata::attributeToString(CardAttribute attribute) {
+    switch (attribute) {
+        case CardAttribute::Magic: return "Магия";
+        case CardAttribute::Faith: return "Вера";
+        case CardAttribute::Heal: return "Лечение";
+        case CardAttribute::Charms: return "Чары";
+        case CardAttribute::Attack: return "Атака";
+        case CardAttribute::Energy: return "Энергия";
+        case CardAttribute::Electricity: return "Электричество";
+        case CardAttribute::Acid: return "Кислота";
+        case CardAttribute::Psycho: return "Психика";
+        case CardAttribute::Bow: return "Лук";
+        case CardAttribute::Mace: return "Булава";
+        case CardAttribute::Pole: return "Древковое оружие";
+        case CardAttribute::Axe: return "Топор";
+        case CardAttribute::Chain: return "Цепь";
+        case CardAttribute::Knife: return "Нож";
+        case CardAttribute::Staff: return "Посох";
+        case CardAttribute::Dart: return "Дротик";
+        case CardAttribute::Sling: return "Праща";
+        case CardAttribute::ShortRange: return "Ближний бой";
+        case CardAttribute::LongRange: return "Дальний бой";
+        case CardAttribute::Slashing: return "Рубящее оружие";
+        case CardAttribute::Piercing: return "Колющее оружие";
+        case CardAttribute::Crushing: return "Дробящее оружие";
+        case CardAttribute::TwoHand: return "Двуручное оружие";
+        case CardAttribute::Rare: return "Редкость";
+    }
+    return std::to_string((int) attribute).c_str();
+}
+
+const char *CardMetadata::cardTypeToString(CardType type) {
+    switch (type) {
+        case CardType::Weapon: return "Оружие";
+        case CardType::Spell: return "Заклинание";
+        case CardType::Armor: return "Броня";
+        case CardType::Thing: return "Предмет";
+        case CardType::Companion: return "Компаньон";
+        case CardType::Blessing: return "Благословение";
+        case CardType::Monster: return "Монстр";
+    }
+    return std::to_string((int) type).c_str();
 }

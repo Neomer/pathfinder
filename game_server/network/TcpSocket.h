@@ -28,7 +28,7 @@ public:
 
     void close();
 
-    void write(nlohmann::json &json);
+    virtual void write(nlohmann::json &json);
 
     void setConnectionClosedListener(IConnectionClosedListener *listener);
 
@@ -38,6 +38,8 @@ protected:
     virtual bool prepareRawData(char **buffer, size_t *size);
 
     virtual void writeRawData(const char *data, size_t size);
+
+    virtual void writeRawData(std::string_view str);
 
 private:
     void readDataProc();

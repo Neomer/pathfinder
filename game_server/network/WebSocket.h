@@ -23,6 +23,8 @@ public:
 protected:
     bool prepareRawData(char **buffer, size_t *size) override;
 
+    void writeRawData(std::string_view str) override;
+
     void writeRawData(const char *data, size_t size) override;
 
 private:

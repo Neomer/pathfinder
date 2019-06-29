@@ -41,7 +41,7 @@ public:
     enum class CardAttribute
     {
         // -----Аттрибуты Заклинаний ------
-                Magic,      // Магия
+        Magic,      // Магия
         Faith,      // Вера
         Heal,       // Лечение
         Charms,     // Чары
@@ -102,6 +102,10 @@ public:
 
 protected:
     virtual void fillAttributes(std::vector<CardMetadata::CardAttribute> &attributes) = 0;
+
+    static const char *attributeToString(CardAttribute attribute);
+
+    static const char *cardTypeToString(CardType type);
 
 private:
     std::vector<CardMetadata::CardAttribute> _attributes;

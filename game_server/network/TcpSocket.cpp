@@ -73,6 +73,7 @@ void TcpSocket::readDataProc() {
                     }
                     storedSize = 0;
                 } else {
+                    Logger::getInstace().log("Package marked as incomplete!");
                     storedSize = len;
                 }
             } else {
@@ -139,6 +140,9 @@ void TcpSocket::writeRawData(const char *data, size_t size) {
 }
 
 void TcpSocket::write(nlohmann::json &json) {
-    auto serialized = json.dump();
-    writeRawData(serialized.c_str(), serialized.size());
+    writeRawData(json.dump());
+}
+
+void TcpSocket::writeRawData(std::string_view str) {
+    writeRawData(str.data(), str.size());
 }

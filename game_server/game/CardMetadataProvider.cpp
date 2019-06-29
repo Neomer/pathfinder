@@ -50,10 +50,13 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
     _metadataVector.push_back(metadata);
 }
 
+#include "cards/spells/HealCard.h"
 
 void CardMetadataProvider::init()
 {
     Logger::getInstace().log("Start cards metadata initialization");
+
+    registerMetadata(new HealCardMetadata());
 
     for (auto metadata : _metadataVector) {
         metadata->load();
