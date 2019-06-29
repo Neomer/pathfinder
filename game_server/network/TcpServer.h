@@ -27,7 +27,7 @@ public:
     void setConnectionAcceptedListener(IConnectionAcceptedListener *listener);
 
 protected:
-    TcpSocket *createSocket(int socketDescriptor);
+    virtual TcpSocket *createSocket(int socketDescriptor);
 
 private:
     void acceptProc();

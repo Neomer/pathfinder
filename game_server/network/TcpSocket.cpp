@@ -49,13 +49,14 @@ void TcpSocket::readDataProc() {
             bytesAvailable = BUFFER_SIZE - storedSize;
             Logger::getInstace().log("Waiting for socket data... Bytes available: "s + std::to_string(bytesAvailable));
             auto len = recv(_socketDescriptor, buffer + storedSize, bytesAvailable, 0);
-            if (!len) {
+            if (len <= 0) {
                 Logger::getInstace().log("Connection closed!");
                 if (_connectionClosedListener != nullptr) {
                     _connectionClosedListener->onConnectionClosed(this);
                 }
                 break;
             }
+            Logger::getInstace().log("Bytes received: "s + std::to_string(len));
             auto start = std::chrono::steady_clock::now();
             if (_dataArrivedListener != nullptr) {
                 size_t size = len;
@@ -100,13 +101,21 @@ void TcpSocket::writeDataProc() {
     std::mutex mtx;
     std::unique_lock uniq(mtx);
     while (_run.load()) {
-        _writeCondVar.wait(uniq);
         if (_writeQueue.size()) {
-            std::lock_guard guard(_writeQueueMutex);
-            auto package = _writeQueue.front();
-            send(_socketDescriptor, package.first, package.second, 0);
-            _writeQueue.pop();
+            try{
+                _writeQueueMutex.lock();
+                Logger::getInstace().log("Messages in queue: "s + std::to_string(_writeQueue.size()));
+                while (!_writeQueue.empty()) {
+                    auto package = _writeQueue.front();
+                    send(_socketDescriptor, package.first, package.second, 0);
+                    _writeQueue.pop();
+                }
+            } catch (std::exception &ex) {
+                _writeQueueMutex.unlock();
+            }
+            Logger::getInstace().log("All messages were sent");
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     Logger::getInstace().log("Write thread terminated");
 }
@@ -124,6 +133,12 @@ void TcpSocket::setDataArrivedListener(IDataArrivedListener *listener) {
 }
 
 void TcpSocket::writeRawData(const char *data, size_t size) {
-    std::lock_guard guard(_writeQueueMutex);
-    _writeQueue.push(Package(data, size));
+    //std::lock_guard guard(_writeQueueMutex);
+    //_writeQueue.push(Package(data, size));
+    send(_socketDescriptor, data, size, 0);
+}
+
+void TcpSocket::write(nlohmann::json &json) {
+    auto serialized = json.dump();
+    writeRawData(serialized.c_str(), serialized.size());
 }

@@ -11,6 +11,7 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include "../modules/json/single_include/nlohmann/json.hpp"
 
 class IConnectionClosedListener;
 
@@ -27,14 +28,16 @@ public:
 
     void close();
 
+    void write(nlohmann::json &json);
+
     void setConnectionClosedListener(IConnectionClosedListener *listener);
 
     void setDataArrivedListener(IDataArrivedListener *listener);
 
 protected:
-    bool prepareRawData(char **buffer, size_t *size);
+    virtual bool prepareRawData(char **buffer, size_t *size);
 
-    void writeRawData(const char *data, size_t size);
+    virtual void writeRawData(const char *data, size_t size);
 
 private:
     void readDataProc();

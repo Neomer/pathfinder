@@ -43,13 +43,11 @@ void TcpServer::listen(uint16_t port) {
 
 void TcpServer::acceptProc() {
     Logger::getInstace().log("Start listening thread...");
+    ::listen(_socketDescriptor, 10);
     while (_run.load()) {
-        auto socket = accept(_socketDescriptor, nullptr ,nullptr);
-        if (socket <= 0 || socket == INVALID_SOCKET) {
-            Logger::getInstace().log("Invalid socket received");
-            break;
-        }
-        if (_connectionAcceptedListener != nullptr) {
+        auto socket = accept(_socketDescriptor, nullptr ,0);
+        if (_connectionAcceptedListener != nullptr && socket >= 0 && socket != INVALID_SOCKET) {
+            Logger::getInstace().log("New connection found");
             _connectionAcceptedListener->onConnectionAccepted(this, createSocket(socket));
         }
     }
