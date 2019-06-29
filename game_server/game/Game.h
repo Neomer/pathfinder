@@ -6,17 +6,43 @@
 #define GAME_SERVER_GAME_H
 
 #include "cards/scenario/Scenario.h"
+#include "../network/WebSocketServer.h"
+#include "../network/TcpServer.h"
+#include "../network/IConnectionAcceptedListener.h"
+#include "../network/IConnectionClosedListener.h"
+#include "../network/IDataArrivedListener.h"
+#include "../network/TcpSocket.h"
+#include "Player.h"
 
-class Game {
+
+class Game :
+        public IConnectionAcceptedListener,
+        public IConnectionClosedListener,
+        public IDataArrivedListener
+{
 public:
     explicit Game(Card *scenario);
 
     void run(int numPlayers);
 
+    void onConnectionAccepted(const TcpServer *server, TcpSocket *socket) override;
+
+    void onConnectionClosed(const TcpSocket *socket) override;
+
+    void onDataArrived(const TcpSocket *socket, nlohmann::json &json) override;
+
 private:
+    void broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json);
+    Player *getPlayerBySocket(const TcpSocket *socket);
+
     Card *_scenario;
     const ScenarioMetadata *_scenarioMetadata;
     std::vector<std::shared_ptr<Card>> _locations;
+
+    TcpServer *_webServer, *_playerServer;
+    std::vector<TcpSocket *> _spectators;
+    std::vector<std::pair<TcpSocket *, Player *>> _players;
+
 };
 
 

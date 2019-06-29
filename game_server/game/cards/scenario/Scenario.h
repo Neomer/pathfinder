@@ -7,11 +7,19 @@
 
 #include "../Card.h"
 
+class Scenario : public Card
+{
+public:
+    virtual void toJson(nlohmann::json &json) const;
+};
+
 class ScenarioMetadata : public CardMetadata {
 public:
     CardType getCardType() const final;
 
     virtual const std::vector<std::pair<int, int>> &getLocationsByPlayers() const = 0;
+
+    void toJson(nlohmann::json &json) const override;
 
     void load() override;
 

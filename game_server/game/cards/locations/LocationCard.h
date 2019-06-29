@@ -10,7 +10,12 @@
 class LocationCard : public Card
 {
 public:
-    virtual void createDeck() = 0;
+    virtual void createDeck();
+
+    virtual void toJson(nlohmann::json &json) const;
+
+private:
+    std::vector<std::shared_ptr<Card>> _deck;
 };
 
 class LocationCardMetadata : public CardMetadata
@@ -19,6 +24,8 @@ public:
     CardType getCardType() const override;
 
     virtual const std::vector<std::pair<int, CardMetadata::CardType>> &getLocationDeck() const = 0;
+
+    void toJson(nlohmann::json &json) const override;
 
     void load() override;
 };

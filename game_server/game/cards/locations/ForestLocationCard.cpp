@@ -3,13 +3,14 @@
 //
 
 #include "ForestLocationCard.h"
+#include "../../CardMetadataProvider.h"
 
 std::string_view ForestLocationCardMetadata::getCardTitle() const {
-    return std::string_view();
+    return "Лес";
 }
 
 const char *ForestLocationCardMetadata::getTypeName() const {
-    return nullptr;
+    return "Forest";
 }
 
 const char *ForestLocationCardMetadata::getDescription() const {
@@ -42,8 +43,4 @@ ForestLocationCard::~ForestLocationCard() {
 
 int ForestLocationCard::getTypeId() const {
     return 1000;
-}
-
-void ForestLocationCard::createDeck() {
-
 }

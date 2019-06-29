@@ -84,6 +84,10 @@ const char *CardMetadata::cardTypeToString(CardType type) {
         case CardType::Companion: return "Компаньон";
         case CardType::Blessing: return "Благословение";
         case CardType::Monster: return "Монстр";
+        case CardType::Boss: return "Босс";
+        case CardType::Scenario: return "Сценарий";
+        case CardType::Location: return "Локация";
+        case CardType::Barrier: return "Предграда";
     }
     return std::to_string((int) type).c_str();
 }

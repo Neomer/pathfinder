@@ -12,8 +12,6 @@ public:
     ~ForestLocationCard() override;
 
     int getTypeId() const override;
-
-    void createDeck() override;
 };
 
 class ForestLocationCardMetadata : public LocationCardMetadata {
