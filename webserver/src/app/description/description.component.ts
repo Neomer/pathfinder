@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunicationServiceService } from '../communication-service.service';
 import { IMessageData } from '../models/IMessageData';
+import { ICard } from '../models/Card';
 
 @Component({
   selector: 'app-description',
@@ -15,11 +16,11 @@ export class DescriptionComponent implements OnInit {
 
   public onMessage(messageData: IMessageData)
   {
-      if (messageData.eventId !== 1)
+      if (messageData.eventId !== 2)
       {
         return;
-      } 
-      console.log('appcomponent: ' + messageData.data);
+      }
+      this.communicationservice.selectedCard = JSON.parse(messageData.data);
   }
 
   ngOnInit() {

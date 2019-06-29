@@ -11,3 +11,8 @@ export interface IScenarioMessageData extends IMessageData
 {
     locations : ICard[]
 }
+
+export interface IUserMessageData extends IMessageData
+{
+    location : string;
+}
