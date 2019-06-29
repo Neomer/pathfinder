@@ -2,10 +2,10 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#include "CultistCard.h"
+#include "Cultist.h"
 
 std::shared_ptr<Card> CultistCardMetadata::createInstance() const {
-    return std::shared_ptr<Card>(new BagbierCard());
+    return std::shared_ptr<Card>(new CultistCard());
 }
 
 std::string_view CultistCardMetadata::getCardTitle() const {

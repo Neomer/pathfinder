@@ -2,7 +2,7 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#include "BagbierCard.h"
+#include "Bagbier.h"
 
 std::shared_ptr<Card> BagbierCardMetadata::createInstance() const {
     return std::shared_ptr<Card>(new BagbierCard());

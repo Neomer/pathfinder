@@ -2,8 +2,8 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#ifndef GAME_SERVER_MONSTERCARD_H
-#define GAME_SERVER_MONSTERCARD_H
+#ifndef GAME_SERVER_BagbierCard_H
+#define GAME_SERVER_BagbierCard_H
 
 #include "../MonsterCard.h"
 
