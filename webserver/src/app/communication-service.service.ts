@@ -14,7 +14,7 @@ export class CommunicationServiceService {
   public scene : number = 0;
   public cards : ICard[] = [];
   public selectedCard : ICard;
-  public users : IUser[] = []; 
+  public users : IUser[] = [];
 
   public messageListeners : Function[] = [];
   private imageUrls: string = 'assets/images/';
@@ -57,6 +57,10 @@ export class CommunicationServiceService {
       // description
       case 2: {
         this.scene = 2;
+      }
+      // TargetLocation
+      case 3: {
+        this.scene = 3;
       }
 
         default:{
