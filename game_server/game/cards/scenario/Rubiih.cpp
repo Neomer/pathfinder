@@ -33,6 +33,10 @@ RubiihMetadata::RubiihMetadata() {
     _locations.emplace_back(4, 1005);
 }
 
+std::shared_ptr<Card> RubiihMetadata::createInstance() const {
+    return std::shared_ptr<Card>(new Rubiih());
+}
+
 Rubiih::~Rubiih() {
 
 }

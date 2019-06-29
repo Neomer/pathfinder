@@ -11,3 +11,4 @@ CardMetadata::CardType LocationCardMetadata::getCardType() const {
 void LocationCardMetadata::load() {
 
 }
+

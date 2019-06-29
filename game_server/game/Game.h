@@ -9,12 +9,14 @@
 
 class Game {
 public:
-    explicit Game(ScenarioMetadata *scenario);
+    explicit Game(Card *scenario);
 
-    void run();
+    void run(int numPlayers);
 
 private:
-    ScenarioMetadata _scenario;
+    Card *_scenario;
+    const ScenarioMetadata *_scenarioMetadata;
+    std::vector<std::shared_ptr<Card>> _locations;
 };
 
 

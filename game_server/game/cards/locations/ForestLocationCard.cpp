@@ -32,6 +32,10 @@ ForestLocationCardMetadata::ForestLocationCardMetadata() {
 
 }
 
+std::shared_ptr<Card> ForestLocationCardMetadata::createInstance() const {
+    return std::shared_ptr<Card>(new ForestLocationCard());
+}
+
 ForestLocationCard::~ForestLocationCard() {
 
 }

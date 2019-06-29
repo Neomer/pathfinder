@@ -30,6 +30,8 @@ public:
 
     const std::vector<std::pair<int, CardMetadata::CardType>> &getLocationDeck() const override;
 
+    std::shared_ptr<Card> createInstance() const override;
+
 private:
     std::vector<std::pair<int, CardMetadata::CardType>> _deck;
 };

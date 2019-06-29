@@ -56,6 +56,8 @@ public:
 
     void toJson(nlohmann::json &json) const override;
 
+    virtual std::shared_ptr<Card> createInstance() const = 0;
+
 private:
 
     static const char *cardTypeToString(CardType type);
@@ -119,8 +121,6 @@ public:
     };
 
     void load() override;
-
-    virtual std::shared_ptr<Card> createInstance() const = 0;
 
     const std::vector<ActiveCardMetadata::CardAttribute> &getAttributes() const;
 
