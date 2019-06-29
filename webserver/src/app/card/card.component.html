@@ -1,0 +1,48 @@
+<div class='current-user'>
+    <div class="name">
+        {{this.communicationservice.user}}
+    </div>
+    <div class='person'>
+        <img [src]='getPesonImage()'>
+    </div>
+</div>
+
+<table class="scenario">
+    <tr>
+        <td class='color{{scenario.typeId}}'>
+            <a title="{{ scenario.title }} : {{ scenario.description }}" (click)="showdescription(scenario)">
+                <img [src]='getImage(scenario)'>
+                <div class="{{ scenario.hide ? 'hide' : ''}}">
+                    <div>{{scenario.description}} </div>
+                    <span>Скилы: {{scenario.attributes}} </span>
+                </div>
+            </a>
+        </td>
+    </tr>
+    <tr>
+
+        <td *ngFor="let item of messages">
+            {{item.object}}
+        </td>
+    </tr>
+</table>
+
+<table class="locations">
+    <tr>
+        <td *ngFor='let item of locations' class='color{{item.typeId}}'>
+            <a title="{{ item.title }} : {{ item.description }}" (click)="showdescription(item)">
+                <img [src]='getImage(item)'>
+                <div class="{{ item.hide ? 'hide' : ''}}">
+                    <div>{{item.description}} </div>
+                    <span>Скилы: {{item.attributes}} </span>
+                </div>
+            </a>
+        </td>
+    </tr>
+    <tr>
+
+        <td *ngFor="let item of messages">
+            {{item.object}}
+        </td>
+    </tr>
+</table>
