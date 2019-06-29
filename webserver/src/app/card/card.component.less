@@ -1,0 +1,55 @@
+@color : black;
+
+a {
+    color: @color ;
+    &:hover {
+        color: @color + #f00;
+    }
+};
+
+table  {
+    padding: 20px
+}
+table.card {
+    padding: 0px;
+}
+table td {
+    padding: 0.5em;
+}
+img {
+    size: auto;
+}
+
+/*card borders*/
+table td.color1{
+    border : 10px solid #a7ba39;
+    border-radius: 20px;
+}
+table td.color2{
+    border : 10px solid #944248;
+    border-radius: 20px;
+}
+div.hide * {
+    display: none;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+}
+
+/*user-info*/
+div.current-user {
+    position: absolute;
+    max-width:200px;
+    max-height:300px;
+    border-radius: 20px;
+}
+
+div.current-user div.name {
+    text-align: center;
+}
+div.current-user * img{
+    width:100%;
+    height: 100%;
+}
