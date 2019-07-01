@@ -137,6 +137,8 @@ public:
         Shooter,    // Стрелок
         Giant,      // Великан
         Ogre,       // Огр
+        Zombie,     // Зомби
+        Siren,      // Сирена
     };
 
     enum class Skill

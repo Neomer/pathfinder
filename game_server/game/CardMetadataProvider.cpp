@@ -70,6 +70,20 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/monsters/GoblinFighter.h"
 #include "cards/monsters/Mercenary.h"
 #include "cards/monsters/HillGiant.h"
+#include "cards/monsters/Ogre.h"
+#include "cards/monsters/PlagueZombie.h"
+#include "cards/monsters/Scout.h"
+#include "cards/monsters/Shadow.h"
+#include "cards/monsters/Siren.h"
+#include "cards/monsters/Skeleton.h"
+#include "cards/monsters/Zombie.h"
+#include "cards/weapons/SesquialteralSword.h"
+#include "cards/weapons/BattleAxe.h"
+#include "cards/weapons/Dagger.h"
+#include "cards/weapons/Darts.h"
+#include "cards/weapons/FlamingMace.h"
+#include "cards/weapons/Glaive.h"
+#include "cards/weapons/TwoHandAxe.h"
 
 void CardMetadataProvider::init()
 {
@@ -86,10 +100,13 @@ void CardMetadataProvider::init()
 
     registerMetadata(new RubiihMetadata());
 
+    //region Servant metadata
     registerMetadata(new ElderSkeletonCardMetadata());
     registerMetadata(new PoisonTrapCardMetadata());
     registerMetadata(new RogueCardMetadata());
+    //endregion
 
+    //region Monster metadata
     registerMetadata(new BagbierCardMetadata());
     registerMetadata(new CultistCardMetadata());
     registerMetadata(new BanipMetadata());
@@ -101,6 +118,25 @@ void CardMetadataProvider::init()
     registerMetadata(new GoblinFighterMetadata());
     registerMetadata(new MercenaryMetadata());
     registerMetadata(new HillGiantMetadata());
+    registerMetadata(new OgreMetadata());
+    registerMetadata(new PlagueZombieMetadata());
+    registerMetadata(new ScoutMetadata());
+    registerMetadata(new ShadowMetadata());
+    registerMetadata(new SirenMetadata());
+    registerMetadata(new SkeletonMetadata());
+    registerMetadata(new ZombieMetadata());
+    //endregion
+
+    //region Weapon metadata
+    registerMetadata(new SesquialteralSwordMetadata());
+    registerMetadata(new BattleAxeMetadata());
+    registerMetadata(new DaggerMetadata());
+    registerMetadata(new DartsMetadata());
+    registerMetadata(new FlamingMaceMetadata());
+    registerMetadata(new GlaiveMetadata());
+    registerMetadata(new TwoHandAxeMetadata());
+    //endregion
+
 
     for (auto metadata : _metadataVector) {
         metadata->load();

@@ -30,7 +30,13 @@ void TcpSocket::close() {
         Logger::getInstace().log("Closing socket...");
         _run = false;
         shutdown(_socketDescriptor, 0);
+#ifdef _WIN32
         closesocket(_socketDescriptor);
+#endif
+
+#ifdef __linux__
+
+#endif
         if (_readThread.joinable()) {
             Logger::getInstace().log("Join to reading thread");
             _readThread.join();

@@ -11,6 +11,11 @@
 #include <netinet/in.h>
 #endif
 
+#ifndef INVALID_SOCKET
+#define INVALID_SOCKET  -1
+#endif
+
+
 #ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>

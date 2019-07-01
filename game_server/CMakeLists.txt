@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.8)
 project(game_server)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -23,7 +23,7 @@ set(SOURCES main.cpp core/string_functions.h
         game/cards/monsters/GoblinFighter.cpp game/cards/monsters/GoblinFighter.h
         game/cards/monsters/Mercenary.cpp game/cards/monsters/Mercenary.h
         game/cards/monsters/HillGiant.cpp game/cards/monsters/HillGiant.h
-        game/cards/monsters/Ogre.cpp game/cards/monsters/Ogre.h)
+        game/cards/monsters/Ogre.cpp game/cards/monsters/Ogre.h game/cards/monsters/PlagueZombie.cpp game/cards/monsters/PlagueZombie.h game/cards/monsters/Scout.cpp game/cards/monsters/Scout.h game/cards/monsters/Shadow.cpp game/cards/monsters/Shadow.h game/cards/monsters/Siren.cpp game/cards/monsters/Siren.h game/cards/monsters/Skeleton.cpp game/cards/monsters/Skeleton.h game/cards/monsters/Zombie.cpp game/cards/monsters/Zombie.h game/cards/weapons/SesquialteralSword.cpp game/cards/weapons/SesquialteralSword.h game/cards/weapons/BattleAxe.cpp game/cards/weapons/BattleAxe.h game/cards/weapons/Dagger.cpp game/cards/weapons/Dagger.h game/cards/weapons/Darts.cpp game/cards/weapons/Darts.h game/cards/weapons/FlamingMace.cpp game/cards/weapons/FlamingMace.h game/cards/weapons/Glaive.cpp game/cards/weapons/Glaive.h game/cards/weapons/TwoHandAxe.cpp game/cards/weapons/TwoHandAxe.h)
 
 add_executable(game_server ${SOURCES})
 
