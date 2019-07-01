@@ -13,6 +13,7 @@
 #include <condition_variable>
 #include "../modules/json/single_include/nlohmann/json.hpp"
 
+
 class IConnectionClosedListener;
 
 class IDataArrivedListener;

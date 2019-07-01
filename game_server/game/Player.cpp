@@ -19,3 +19,11 @@ const std::shared_ptr<Card> &Player::getRole() const {
 void Player::setRole(const std::shared_ptr<Card> &role) {
     _role = role;
 }
+
+const std::shared_ptr<Card> &Player::getLocation() const {
+    return _location;
+}
+
+void Player::setLocation(const std::shared_ptr<Card> &location) {
+    _location = location;
+}

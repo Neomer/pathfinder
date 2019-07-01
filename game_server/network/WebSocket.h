@@ -6,6 +6,7 @@
 #define GAME_SERVER_WEBSOCKET_H
 
 #include "TcpSocket.h"
+#include "IWebSocketSessionInitListener.h"
 
 class WebSocket : public TcpSocket
 {
@@ -20,6 +21,9 @@ public:
 
     ~WebSocket() override;
 
+    void setOnWebSocketSessionInitListener(IWebSocketSessionInitListener *listener);
+
+
 protected:
     bool prepareRawData(char **buffer, size_t *size) override;
 
@@ -29,6 +33,8 @@ protected:
 
 private:
     ChannelState _state;
+
+    IWebSocketSessionInitListener *_webSocketSessionInitListener;
 };
 
 

@@ -12,7 +12,7 @@ add_executable(game_server main.cpp core/string_functions.h
         game/cards/servants/PoisonTrap.h game/cards/servants/PoisonTrap.cpp
         game/cards/servants/Rogue.cpp game/cards/servants/Rogue.h
         game/cards/MonsterCard.h game/cards/MonsterCard.cpp
-        game/cards/ServantCard.h game/cards/ServantCard.cpp)
+        game/cards/ServantCard.h game/cards/ServantCard.cpp network/IWebSocketSessionInitListener.h)
 
 SET(CMAKE_CXX_FLAGS -pthread)
 if(WIN32)

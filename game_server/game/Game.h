@@ -11,6 +11,7 @@
 #include "../network/IConnectionAcceptedListener.h"
 #include "../network/IConnectionClosedListener.h"
 #include "../network/IDataArrivedListener.h"
+#include "../network/IWebSocketSessionInitListener.h"
 #include "../network/TcpSocket.h"
 #include "Player.h"
 
@@ -18,6 +19,7 @@
 class Game :
         public IConnectionAcceptedListener,
         public IConnectionClosedListener,
+        public IWebSocketSessionInitListener,
         public IDataArrivedListener
 {
 public:
@@ -31,6 +33,8 @@ public:
 
     void onDataArrived(TcpSocket *socket, nlohmann::json &json) override;
 
+    void onSessionInit(WebSocket *socket) override;
+
 private:
     void broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json);
     Player *getPlayerBySocket(const TcpSocket *socket);
@@ -38,6 +42,7 @@ private:
     Card *_scenario;
     const ScenarioMetadata *_scenarioMetadata;
     std::vector<std::shared_ptr<Card>> _locations;
+    uint8_t _movesLeft;
 
     TcpServer *_webServer, *_playerServer;
     std::vector<TcpSocket *> _spectators;
