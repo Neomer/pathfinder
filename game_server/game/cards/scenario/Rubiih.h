@@ -32,6 +32,8 @@ public:
 
     std::shared_ptr<Card> createInstance() const override;
 
+    int getBossId() const override;
+
 private:
     std::vector<std::pair<int, int>> _locations;
 };

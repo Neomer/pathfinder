@@ -19,6 +19,8 @@ public:
 
     virtual const std::vector<std::pair<int, int>> &getLocationsByPlayers() const = 0;
 
+    virtual int getBossId() const = 0;
+
     void toJson(nlohmann::json &json) const override;
 
     void load() override;

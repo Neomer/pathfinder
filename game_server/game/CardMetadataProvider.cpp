@@ -84,6 +84,14 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/weapons/FlamingMace.h"
 #include "cards/weapons/Glaive.h"
 #include "cards/weapons/TwoHandAxe.h"
+#include "cards/weapons/HeavyCrossbow.h"
+#include "cards/weapons/LightCrossbow.h"
+#include "cards/weapons/LongBow.h"
+#include "cards/weapons/LongSpear.h"
+#include "cards/weapons/LongSword.h"
+#include "cards/weapons/Mace.h"
+#include "cards/weapons/BattleStaff.h"
+#include "cards/bosses/DjabralWiskey.h"
 
 void CardMetadataProvider::init()
 {
@@ -135,8 +143,18 @@ void CardMetadataProvider::init()
     registerMetadata(new FlamingMaceMetadata());
     registerMetadata(new GlaiveMetadata());
     registerMetadata(new TwoHandAxeMetadata());
+    registerMetadata(new HeavyCrossbowMetadata());
+    registerMetadata(new LightCrossbowMetadata());
+    registerMetadata(new LongBowMetadata());
+    registerMetadata(new LongSpearMetadata());
+    registerMetadata(new LongSwordMetadata());
+    registerMetadata(new MaceMetadata());
+    registerMetadata(new BattleStaffMetadata());
     //endregion
 
+    //region Boss metadata
+    registerMetadata(new DjabralWiskeyMetadata());
+    //endregion
 
     for (auto metadata : _metadataVector) {
         metadata->load();

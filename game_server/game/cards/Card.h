@@ -108,6 +108,7 @@ public:
         Crushing,   // Дробящее оружие
         TwoHand,    // Двуручное оружие
         Rare,       // Редкость
+        Spear,      // Копье
 
         HeavyArmor, // Тяжелая броня
         OneHand,    // Занятая рука
@@ -120,6 +121,7 @@ public:
         Skeleton,	// Скелет
         Human, 		// Человек
         Rogue,		// Разбойник
+        Cheat,      // Плут
         Trap, 		// Ловушка
         Poison,		// Яд
         Bagbier, 	// Багбир

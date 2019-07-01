@@ -13,7 +13,7 @@ const char *RubiihMetadata::getTypeName() const {
 }
 
 const char *RubiihMetadata::getDescription() const {
-    return CardMetadata::getDescription();
+    return "Разбойники из банды Скарни и раньше промышляли в окрестностях Сэндпоинта, но под предводительством Джабрайла Виски осмелели еще больше. Кто-то должен положить конец их разбою, пока люди не потеряли что-нибудь боле ценное, нежели деньги или домашний скот.";
 }
 
 int RubiihMetadata::TypeId() const {
@@ -35,6 +35,11 @@ RubiihMetadata::RubiihMetadata() {
 
 std::shared_ptr<Card> RubiihMetadata::createInstance() const {
     return std::shared_ptr<Card>(new Rubiih());
+}
+
+int RubiihMetadata::getBossId() const
+{
+    return 600;
 }
 
 Rubiih::~Rubiih() {
