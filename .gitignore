@@ -1,2 +1,4 @@
 game_server/.idea/*
 game_server/.cmake-build-*
+game_server/.cmake-build-debug/*
+game_server/.cmake-build-release/*
