@@ -76,6 +76,9 @@ public:
 
     enum class CardAttribute
     {
+        BeginnerLevel, // Начальный уровень
+        AdvancedLevel, // Продвинутый уровень
+
         // -----Аттрибуты Заклинаний ------
         Magic,      // Магия
         Faith,      // Вера
@@ -113,16 +116,27 @@ public:
         Decoration, // Украшение
 
 // -----Аттрибуты монстров ------
-        Undead, 	//Нежить
-        Skeleton,	//Скелет
-        Human, 		//Человек
-        Rogue,		//Разбойник
-        Trap, 		//Ловушка
-        Poison,		//Яд
-        Bagbier, 	//Багбир
-        Goblin,		//Гоблин
-        Fighter,	//Боец
-        Cultist,	//Культист
+        Undead, 	// Нежить
+        Skeleton,	// Скелет
+        Human, 		// Человек
+        Rogue,		// Разбойник
+        Trap, 		// Ловушка
+        Poison,		// Яд
+        Bagbier, 	// Багбир
+        Goblin,		// Гоблин
+        Fighter,	// Боец
+        Cultist,	// Культист
+        Banip,      // Баньип
+        Water,      // Вода
+        Witchcraft, // Чародей
+        Veteran,    // Ветеран
+        Disembodied,// Бестелесность
+        Ghost,      // Привидение
+        Ghoul,      // Упырь
+        Animal,     // Животное
+        Shooter,    // Стрелок
+        Giant,      // Великан
+        Ogre,       // Огр
     };
 
     enum class Skill

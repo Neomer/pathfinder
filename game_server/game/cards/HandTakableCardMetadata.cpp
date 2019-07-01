@@ -3,3 +3,7 @@
 //
 
 #include "HandTakableCardMetadata.h"
+
+bool HandTakableCardMetadata::isBeginnerLevel() const {
+    return hasAttribute(CardAttribute::BeginnerLevel);
+}

@@ -24,10 +24,7 @@ void BagbierCardMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::Fighter);
     attributes.push_back(CardAttribute::Goblin);
 	attributes.push_back(CardAttribute::Bagbier);
-}
-
-bool BagbierCardMetadata::isBeginnerLevel() const {
-    return false;
+	attributes.push_back(CardAttribute::AdvancedLevel);
 }
 
 int BagbierCard::getTypeId() const {

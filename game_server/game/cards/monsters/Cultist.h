@@ -7,7 +7,7 @@
 
 #include "../MonsterCard.h"
 
-class CultistCard : public Card
+class CultistCard : public ActiveCard
 {
 public:
     int getTypeId() const override;
@@ -24,8 +24,6 @@ public:
 
     int TypeId() const override;
 	
-	bool isBeginnerLevel() const override;
-
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 };

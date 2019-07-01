@@ -19,19 +19,25 @@ TcpSocket::TcpSocket(int socketDescriptor) :
     _socketDescriptor{ socketDescriptor },
     _run{ true },
     _readThread{ std::bind(&TcpSocket::readDataProc, this) },
-    _writeThread{ std::bind(&TcpSocket::writeDataProc, this) },
     _connectionClosedListener{ nullptr },
     _dataArrivedListener{ nullptr }
 {
     _readThread.detach();
-    _writeThread.detach();
 }
 
 void TcpSocket::close() {
     if (_run.load()) {
+        Logger::getInstace().log("Closing socket...");
         _run = false;
         shutdown(_socketDescriptor, 0);
         closesocket(_socketDescriptor);
+        if (_readThread.joinable()) {
+            Logger::getInstace().log("Join to reading thread");
+            _readThread.join();
+        } else {
+            Logger::getInstace().log("Reading thread isn't joinable");
+        }
+        Logger::getInstace().log("Socket is closed");
     }
 }
 
@@ -93,34 +99,6 @@ bool TcpSocket::prepareRawData(char **buffer, size_t *size) {
     return true;
 }
 
-void TcpSocket::writeDataProc() {
-    if (_socketDescriptor < 0 || _socketDescriptor == INVALID_SOCKET) {
-        Logger::getInstace().log("Invalid socket descriptor!");
-        return;
-    }
-    Logger::getInstace().log("Start write thread...");
-    std::mutex mtx;
-    std::unique_lock uniq(mtx);
-    while (_run.load()) {
-        if (_writeQueue.size()) {
-            try{
-                _writeQueueMutex.lock();
-                Logger::getInstace().log("Messages in queue: "s + std::to_string(_writeQueue.size()));
-                while (!_writeQueue.empty()) {
-                    auto package = _writeQueue.front();
-                    send(_socketDescriptor, package.first, package.second, 0);
-                    _writeQueue.pop();
-                }
-            } catch (std::exception &ex) {
-                _writeQueueMutex.unlock();
-            }
-            Logger::getInstace().log("All messages were sent");
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    Logger::getInstace().log("Write thread terminated");
-}
-
 TcpSocket::~TcpSocket() {
     close();
 }
@@ -134,8 +112,6 @@ void TcpSocket::setDataArrivedListener(IDataArrivedListener *listener) {
 }
 
 void TcpSocket::writeRawData(const char *data, size_t size) {
-    //std::lock_guard guard(_writeQueueMutex);
-    //_writeQueue.push(Package(data, size));
     send(_socketDescriptor, data, size, 0);
 }
 

@@ -10,7 +10,7 @@
 class HandTakableCardMetadata : public ActiveCardMetadata
 {
 public:
-    virtual bool isBeginnerLevel() const = 0;
+    virtual bool isBeginnerLevel() const;
 };
 
 

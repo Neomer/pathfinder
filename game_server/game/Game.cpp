@@ -59,12 +59,7 @@ void Game::onConnectionAccepted(const TcpServer *server, TcpSocket *socket) {
 void Game::onConnectionClosed(const TcpSocket *socket) {
     Logger::getInstace().log("Someone disconnect...");
     _spectators.erase(std::remove(_spectators.begin(), _spectators.end(), socket), _spectators.end());
-    /*
-    _players.erase(std::remove_if(_spectators.begin(), _spectators.end(),
-            [socket](const std::pair<TcpSocket *, Player *> &item) -> bool {
-                return item.first == socket;
-            }), _spectators.end());
-    */
+    //_players.erase(std::remove(_players.begin(), _players.end(), socket), _players.end());
 }
 
 void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {

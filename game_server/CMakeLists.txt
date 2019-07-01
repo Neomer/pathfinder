@@ -12,7 +12,7 @@ add_executable(game_server main.cpp core/string_functions.h
         game/cards/servants/PoisonTrap.h game/cards/servants/PoisonTrap.cpp
         game/cards/servants/Rogue.cpp game/cards/servants/Rogue.h
         game/cards/MonsterCard.h game/cards/MonsterCard.cpp
-        game/cards/ServantCard.h game/cards/ServantCard.cpp network/IWebSocketSessionInitListener.h)
+        game/cards/ServantCard.h game/cards/ServantCard.cpp network/IWebSocketSessionInitListener.h game/cards/monsters/Banip.cpp game/cards/monsters/Banip.h game/cards/monsters/SpellCaster.cpp game/cards/monsters/SpellCaster.h game/cards/monsters/Ghost.cpp game/cards/monsters/Ghost.h game/cards/monsters/Ghoul.cpp game/cards/monsters/Ghoul.h game/cards/monsters/GiantGecko.cpp game/cards/monsters/GiantGecko.h game/cards/monsters/GoblinSaboteur.cpp game/cards/monsters/GoblinSaboteur.h game/cards/monsters/GoblinFighter.cpp game/cards/monsters/GoblinFighter.h game/cards/monsters/Mercenary.cpp game/cards/monsters/Mercenary.h game/cards/monsters/HillGiant.cpp game/cards/monsters/HillGiant.h game/cards/monsters/Ogre.cpp game/cards/monsters/Ogre.h)
 
 SET(CMAKE_CXX_FLAGS -pthread)
 if(WIN32)

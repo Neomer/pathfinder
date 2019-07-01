@@ -44,16 +44,11 @@ protected:
 
 private:
     void readDataProc();
-    void writeDataProc();
 
     int _socketDescriptor;
 
-    std::thread _readThread, _writeThread;
+    std::thread _readThread;
     std::atomic_bool _run;
-
-    std::mutex _writeQueueMutex;
-    std::queue<Package> _writeQueue;
-    std::condition_variable _writeCondVar;
 
     IConnectionClosedListener *_connectionClosedListener;
     IDataArrivedListener * _dataArrivedListener;

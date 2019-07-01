@@ -23,11 +23,9 @@ int CultistCardMetadata::TypeId() const {
 void CultistCardMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) {
     attributes.push_back(CardAttribute::Cultist);
     attributes.push_back(CardAttribute::Human);
+    attributes.push_back(CardAttribute::BeginnerLevel);
 }
 
-bool CultistCardMetadata::isBeginnerLevel() const {
-    return true;
-}
 
 int CultistCard::getTypeId() const {
     return 401;

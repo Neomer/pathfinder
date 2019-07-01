@@ -5,6 +5,8 @@
 #include "game/Game.h"
 #include "game/cards/scenario/Rubiih.h"
 
+using namespace std::string_literals;
+
 int main()
 {
     Logger::getInstace().log("Starting game server...");
@@ -14,7 +16,9 @@ int main()
         throw std::runtime_error("Winsock initialization failed!");
     }
 #endif
+    auto start = std::chrono::steady_clock::now();
     CardMetadataProvider::getInstance().init();
+    Logger::getInstace().log("Metadata intialization time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
 
     Card *scenario = new Rubiih();
     Game game(scenario);

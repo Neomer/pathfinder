@@ -1,31 +1,31 @@
 //
-// Created by vinokurov on 29.06.2019.
+// Created by vinokurov on 01.07.2019.
 //
 
-#ifndef GAME_SERVER_BagbierCard_H
-#define GAME_SERVER_BagbierCard_H
+#ifndef GAME_SERVER_OGRE_H
+#define GAME_SERVER_OGRE_H
 
 #include "../MonsterCard.h"
 
-class BagbierCard : public ActiveCard
-{
+class Ogre : public ActiveCard {
 public:
     int getTypeId() const override;
 };
 
-class BagbierCardMetadata : public MonsterCardMetadata
-{
+class OgreMetadata : public MonsterCardMetadata {
 public:
-    std::shared_ptr<Card> createInstance() const override;
-
     std::string_view getCardTitle() const override;
 
     const char *getTypeName() const override;
 
+    const char *getDescription() const override;
+
+    std::shared_ptr<Card> createInstance() const override;
+
     int TypeId() const override;
-	
+
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 };
 
-#endif //GAME_SERVER_MONSTERCARD_H
+#endif //GAME_SERVER_OGRE_H

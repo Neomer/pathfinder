@@ -8,7 +8,7 @@
 
 #include "HandTakableCardMetadata.h"
 
-class MonsterCardMetadata : public HandTakableCardMetadata
+class MonsterCardMetadata : public ActiveCardMetadata
 {
 public:
     CardType getCardType() const override;

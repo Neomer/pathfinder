@@ -61,6 +61,15 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/servants/Rogue.h"
 #include "cards/monsters/Bagbier.h"
 #include "cards/monsters/Cultist.h"
+#include "cards/monsters/Banip.h"
+#include "cards/monsters/SpellCaster.h"
+#include "cards/monsters/Ghost.h"
+#include "cards/monsters/Ghoul.h"
+#include "cards/monsters/GiantGecko.h"
+#include "cards/monsters/GoblinSaboteur.h"
+#include "cards/monsters/GoblinFighter.h"
+#include "cards/monsters/Mercenary.h"
+#include "cards/monsters/HillGiant.h"
 
 void CardMetadataProvider::init()
 {
@@ -83,6 +92,15 @@ void CardMetadataProvider::init()
 
     registerMetadata(new BagbierCardMetadata());
     registerMetadata(new CultistCardMetadata());
+    registerMetadata(new BanipMetadata());
+    registerMetadata(new SpellCasterMetadata());
+    registerMetadata(new GhostMetadata());
+    registerMetadata(new GhoulMetadata());
+    registerMetadata(new GiantGeckoMetadata());
+    registerMetadata(new GoblinSaboteurMetadata());
+    registerMetadata(new GoblinFighterMetadata());
+    registerMetadata(new MercenaryMetadata());
+    registerMetadata(new HillGiantMetadata());
 
     for (auto metadata : _metadataVector) {
         metadata->load();
