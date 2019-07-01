@@ -2,8 +2,8 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#ifndef GAME_SERVER_SERVANTCARD_H
-#define GAME_SERVER_SERVANTCARD_H
+#ifndef GAME_SERVER_ROGUE_H
+#define GAME_SERVER_ROGUE_H
 
 #include "../ServantCard.h"
 
@@ -28,4 +28,4 @@ protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 };
 
-#endif //GAME_SERVER_SERVANTCARD_H
+#endif //GAME_SERVER_ROGUE_H

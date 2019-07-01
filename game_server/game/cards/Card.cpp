@@ -3,6 +3,7 @@
 //
 
 #include "Card.h"
+#include "../CardMetadataProvider.h"
 
 ActiveCardMetadata::ActiveCardMetadata() {
 
@@ -90,4 +91,8 @@ const char *CardMetadata::cardTypeToString(CardType type) {
         case CardType::Barrier: return "Предграда";
     }
     return std::to_string((int) type).c_str();
+}
+
+const CardMetadata *Card::getMetadata() const {
+    return CardMetadataProvider::getInstance().getMetadata(getTypeId());
 }

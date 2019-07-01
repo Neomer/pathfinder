@@ -6,9 +6,9 @@
 #define GAME_SERVER_MONSTERCARD_H
 
 
-#include "Card.h"
+#include "HandTakableCardMetadata.h"
 
-class MonsterCardMetadata : public ActiveCardMetadata
+class MonsterCardMetadata : public HandTakableCardMetadata
 {
 public:
     CardType getCardType() const override;

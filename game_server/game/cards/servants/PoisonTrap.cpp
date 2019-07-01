@@ -2,7 +2,7 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#include "PoisonTrapCard.h"
+#include "PoisonTrap.h"
 
 std::shared_ptr<Card> PoisonTrapCardMetadata::createInstance() const {
     return std::shared_ptr<Card>(new PoisonTrapCard());

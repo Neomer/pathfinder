@@ -2,7 +2,7 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#include "ElderSkeletonCard.h"
+#include "ElderSkeleton.h"
 
 std::shared_ptr<Card> ElderSkeletonCardMetadata::createInstance() const {
     return std::shared_ptr<Card>(new ElderSkeletonCard());

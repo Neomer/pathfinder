@@ -2,8 +2,8 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#ifndef GAME_SERVER_SERVANTCARD_H
-#define GAME_SERVER_SERVANTCARD_H
+#ifndef GAME_SERVER_SERVANT2CARD_H
+#define GAME_SERVER_SERVANT2CARD_H
 
 
 #include "Card.h"

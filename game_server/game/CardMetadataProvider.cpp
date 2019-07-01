@@ -56,6 +56,11 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/things/AmuletOfLife.h"
 #include "cards/locations/ForestLocationCard.h"
 #include "cards/scenario/Rubiih.h"
+#include "cards/servants/ElderSkeleton.h"
+#include "cards/servants/PoisonTrap.h"
+#include "cards/servants/Rogue.h"
+#include "cards/monsters/Bagbier.h"
+#include "cards/monsters/Cultist.h"
 
 void CardMetadataProvider::init()
 {
@@ -71,6 +76,13 @@ void CardMetadataProvider::init()
     registerMetadata(new ForestLocationCardMetadata());
 
     registerMetadata(new RubiihMetadata());
+
+    registerMetadata(new ElderSkeletonCardMetadata());
+    registerMetadata(new PoisonTrapCardMetadata());
+    registerMetadata(new RogueCardMetadata());
+
+    registerMetadata(new BagbierCardMetadata());
+    registerMetadata(new CultistCardMetadata());
 
     for (auto metadata : _metadataVector) {
         metadata->load();

@@ -2,7 +2,7 @@
 // Created by vinokurov on 29.06.2019.
 //
 
-#include "RogueCard.h"
+#include "Rogue.h"
 
 std::shared_ptr<Card> RogueCardMetadata::createInstance() const {
     return std::shared_ptr<Card>(new RogueCard());

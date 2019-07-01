@@ -17,7 +17,8 @@ using  namespace std::string_literals;
 
 WebSocket::WebSocket(int socketDescriptor) :
     TcpSocket(socketDescriptor),
-    _state{ ChannelState::Open }
+    _state{ ChannelState::Open },
+    _webSocketSessionInitListener{ nullptr }
 {
 
 }
@@ -56,6 +57,9 @@ bool WebSocket::prepareRawData(char **buffer, size_t *size) {
                    "WebSocket-Location: ws://localhost:11555/demo\r\n\r\n";
         writeRawData(msg.c_str(), msg.size());
         _state = ChannelState::Ready;
+        if (_webSocketSessionInitListener != nullptr) {
+            _webSocketSessionInitListener->onSessionInit(this);
+        }
     }
     return true;
 }
@@ -84,3 +88,6 @@ void WebSocket::writeRawData(std::string_view str) {
     TcpSocket::writeRawData(data, len);
 }
 
+void WebSocket::setOnWebSocketSessionInitListener(IWebSocketSessionInitListener *listener) {
+    _webSocketSessionInitListener = listener;
+}

@@ -10,12 +10,16 @@
 #include <vector>
 #include "Metadata.h"
 
+class CardMetadata;
+
 class Card
 {
 public:
     virtual ~Card() {}
 
     virtual int getTypeId() const = 0;
+
+    virtual const CardMetadata *getMetadata() const;
 
 };
 
@@ -108,6 +112,17 @@ public:
 
         Decoration, // Украшение
 
+// -----Аттрибуты монстров ------
+        Undead, 	//Нежить
+        Skeleton,	//Скелет
+        Human, 		//Человек
+        Rogue,		//Разбойник
+        Trap, 		//Ловушка
+        Poison,		//Яд
+        Bagbier, 	//Багбир
+        Goblin,		//Гоблин
+        Fighter,	//Боец
+        Cultist,	//Культист
     };
 
     enum class Skill
