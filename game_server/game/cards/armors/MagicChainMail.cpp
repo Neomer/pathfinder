@@ -33,6 +33,11 @@ void MagicChainMailMetadata::fillAttributes(std::vector<ActiveCardMetadata::Card
     attributes.push_back(CardAttribute::HeavyArmor);
 }
 
+void MagicChainMailMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+{
+
+}
+
 MagicChainMail::~MagicChainMail() {
 
 }

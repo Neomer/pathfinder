@@ -10,7 +10,19 @@
 class HandTakableCardMetadata : public ActiveCardMetadata
 {
 public:
+    using CardTakenConditions = std::vector<std::pair<std::vector<Skill>, int>>;
+
     virtual bool isBeginnerLevel() const;
+
+    const CardTakenConditions &getTakenConditions() const;
+
+    void load() override;
+
+protected:
+    virtual void fillCardsTakenConditions(CardTakenConditions &conditions) = 0;
+
+private:
+    CardTakenConditions _takenConditions;
 };
 
 

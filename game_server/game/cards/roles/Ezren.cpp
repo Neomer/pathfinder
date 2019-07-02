@@ -40,3 +40,15 @@ void EzrenMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Human);
     attributes.push_back(CardAttribute::Wizard);
 }
+
+void EzrenMetadata::fillSkills(RoleCardMetadata::RoleSkillCollection &skills)
+{
+    skills.emplace_back(Skill::Strength, std::pair<int, int>(6, 0));
+    skills.emplace_back(Skill::Agility, std::pair<int, int>(6, 0));
+    skills.emplace_back(Skill::Endurance, std::pair<int, int>(4, 0));
+    skills.emplace_back(Skill::Intelligence, std::pair<int, int>(12, 0));
+    skills.emplace_back(Skill::Charms, std::pair<int, int>(12, 2));
+    skills.emplace_back(Skill::Knowledge, std::pair<int, int>(12, 2));
+    skills.emplace_back(Skill::Wisdom, std::pair<int, int>(8, 0));
+    skills.emplace_back(Skill::Charisma, std::pair<int, int>(6, 0));
+}

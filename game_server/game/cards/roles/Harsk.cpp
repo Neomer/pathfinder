@@ -40,3 +40,8 @@ void HarskMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Dwarf);
     attributes.push_back(CardAttribute::Tracker);
 }
+
+void HarskMetadata::fillSkills(RoleCardMetadata::RoleSkillCollection &skills)
+{
+
+}

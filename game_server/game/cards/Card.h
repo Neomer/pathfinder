@@ -73,8 +73,6 @@ private:
 class ActiveCardMetadata : public CardMetadata
 {
 public:
-    ActiveCardMetadata();
-
     enum class CardAttribute
     {
         BeginnerLevel, // Начальный уровень
@@ -158,8 +156,13 @@ public:
         Endurance,      // Выносливость
         Intelligence,   // Интеллект
         Wisdom,         // Мудрость
-        Charisma        // Харизма
+        Charisma,       // Харизма
+        Charms,         // Чары
+        Knowledge,      // Знания
     };
+
+    ActiveCardMetadata();
+
 
     void load() override;
 

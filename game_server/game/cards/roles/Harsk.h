@@ -28,6 +28,8 @@ public:
 
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
+
+    void fillSkills(RoleSkillCollection &skills) override;
 };
 
 

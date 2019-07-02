@@ -7,3 +7,15 @@
 bool HandTakableCardMetadata::isBeginnerLevel() const {
     return hasAttribute(CardAttribute::BeginnerLevel);
 }
+
+void HandTakableCardMetadata::load()
+{
+    ActiveCardMetadata::load();
+
+    fillCardsTakenConditions(_takenConditions);
+}
+
+const HandTakableCardMetadata::CardTakenConditions &HandTakableCardMetadata::getTakenConditions() const
+{
+    return _takenConditions;
+}
