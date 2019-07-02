@@ -46,6 +46,7 @@ public:
         Scenario,   // Сценарий
         Location,   // Локация
         Barrier,    // Предграда
+        Role,       // Роль
     };
 
     virtual std::string_view  getCardTitle() const = 0;
@@ -141,6 +142,13 @@ public:
         Ogre,       // Огр
         Zombie,     // Зомби
         Siren,      // Сирена
+
+// -----Аттрибуты персонажей ------
+        Wizard,     // Волшебник
+        Dwarf,      // Дварф
+        Tracker,    // Следопыт
+        Man,        // Мужчина
+        Woman,      // Женщина
     };
 
     enum class Skill

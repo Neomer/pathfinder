@@ -92,21 +92,33 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/weapons/Mace.h"
 #include "cards/weapons/BattleStaff.h"
 #include "cards/bosses/DjabralWiskey.h"
+#include "cards/roles/Ezren.h"
+#include "cards/roles/Harsk.h"
 
 void CardMetadataProvider::init()
 {
     Logger::getInstace().log("Start cards metadata initialization");
 
+    //region Spell metadata
     registerMetadata(new HealCardMetadata());
+    //endregion
 
+    //region Armor metadata
     registerMetadata(new MagicChainMailMetadata());
     registerMetadata(new MagicShieldMetadata());
+    //endregion
 
+    //region Thing metadata
     registerMetadata(new AmuletOfLifeMetadata());
+    //endregion
 
+    //region Location metadata
     registerMetadata(new ForestLocationCardMetadata());
+    //endregion
 
+    //region Scenario metadata
     registerMetadata(new RubiihMetadata());
+    //endregion
 
     //region Servant metadata
     registerMetadata(new ElderSkeletonCardMetadata());
@@ -154,6 +166,11 @@ void CardMetadataProvider::init()
 
     //region Boss metadata
     registerMetadata(new DjabralWiskeyMetadata());
+    //endregion
+
+    //region Role metadata
+    registerMetadata(new EzrenMetadata());
+    registerMetadata(new HarskMetadata());
     //endregion
 
     for (auto metadata : _metadataVector) {

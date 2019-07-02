@@ -5,11 +5,15 @@
 #include "game/Game.h"
 #include "game/cards/scenario/Rubiih.h"
 
+#include "game/Deck.h"
+
 using namespace std::string_literals;
 
 int main()
 {
     Logger::getInstace().log("Starting game server...");
+    srand(time(nullptr));
+
 #ifdef _WIN32
     WSADATA wsaData;
     if (WSAStartup(WINSOCK_VERSION, &wsaData)) {
@@ -19,6 +23,7 @@ int main()
     auto start = std::chrono::steady_clock::now();
     CardMetadataProvider::getInstance().init();
     Logger::getInstace().log("Metadata intialization time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
+
 
     Card *scenario = new Rubiih();
     Game game(scenario);

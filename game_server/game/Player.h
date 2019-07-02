@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include "cards/Card.h"
+#include "Deck.h"
 
 class Player {
 public:
@@ -24,6 +25,7 @@ public:
     void setLocation(const std::shared_ptr<Card> &location);
 
 private:
+    Deck _activeDeck, _usedDeck;
     std::string _name;
     std::shared_ptr<Card> _role;
     std::shared_ptr<Card> _location;
