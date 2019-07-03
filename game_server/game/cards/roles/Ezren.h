@@ -26,10 +26,18 @@ public:
 
     int TypeId() const override;
 
+    uint8_t getHandSize() const override;
+
+    CardType getFavouriteCardType() const override;
+
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 
     void fillSkills(RoleSkillCollection &skills) override;
+
+    void fillMastery(RoleMastery &mastery) override;
+
+    void fillStartHandCardTypes(RoleStartHandCardTypes &startHandCardTypes) override;
 };
 
 

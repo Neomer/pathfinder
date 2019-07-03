@@ -41,3 +41,7 @@ void LongSwordMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::BeginnerLevel);
     attributes.push_back(CardAttribute::Slashing);
 }
+
+void LongSwordMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 6);
+}

@@ -109,10 +109,13 @@ public:
         Rare,       // Редкость
         Spear,      // Копье
 
+// -----Аттрибуты брони ------
         HeavyArmor, // Тяжелая броня
+        LightArmor, // Легкая броня
         OneHand,    // Занятая рука
         Shield,     // Щит
 
+// -----Аттрибуты предметов ------
         Decoration, // Украшение
 
 // -----Аттрибуты монстров ------
@@ -147,6 +150,8 @@ public:
         Tracker,    // Следопыт
         Man,        // Мужчина
         Woman,      // Женщина
+        Priestess,  // Жрица
+
     };
 
     enum class Skill
@@ -159,6 +164,19 @@ public:
         Charisma,       // Харизма
         Charms,         // Чары
         Knowledge,      // Знания
+        LongRange,      // Дальний бой
+        ShortRange,     // Ближний бой
+        Stamina,        // Стойкость
+        Attention,      // Внимание
+        Survival,       // Выживание
+        Faith,          // Вера
+    };
+
+    enum class Mastery
+    {
+        LightArmor,     // Легкая броня
+        HeavyArmor,     // Тяжелая броня
+        Weapon,         // Оружие
     };
 
     ActiveCardMetadata();

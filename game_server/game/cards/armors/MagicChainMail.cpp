@@ -35,7 +35,7 @@ void MagicChainMailMetadata::fillAttributes(std::vector<ActiveCardMetadata::Card
 
 void MagicChainMailMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
 {
-
+    conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 3);
 }
 
 MagicChainMail::~MagicChainMail() {

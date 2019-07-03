@@ -41,3 +41,7 @@ void MagicShieldMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
 std::shared_ptr<Card> MagicShieldMetadata::createInstance() const {
     return std::shared_ptr<Card>(new MagicShield());
 }
+
+void MagicShieldMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+
+}

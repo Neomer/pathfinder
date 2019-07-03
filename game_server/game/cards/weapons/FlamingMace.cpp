@@ -41,3 +41,7 @@ void FlamingMaceMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::Crushing);
     attributes.push_back(CardAttribute::Magic);
 }
+
+void FlamingMaceMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 11);
+}

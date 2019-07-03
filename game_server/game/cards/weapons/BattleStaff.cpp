@@ -42,3 +42,7 @@ void BattleStaffMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::Crushing);
     attributes.push_back(CardAttribute::TwoHand);
 }
+
+void BattleStaffMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 3);
+}

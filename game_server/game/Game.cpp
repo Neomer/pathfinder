@@ -48,7 +48,7 @@ void Game::onConnectionAccepted(const TcpServer *server, TcpSocket *socket) {
     socket->setConnectionClosedListener(this);
     if (server == _playerServer) {
         Logger::getInstace().log("New player connected");
-        _players.emplace_back(socket, new Player());
+        _players.emplace_back(socket, new Player("Player "s + std::to_string(_players.size() + 1)));
     } else {
         Logger::getInstace().log("New spectator connected");
         dynamic_cast<WebSocket *>(socket)->setOnWebSocketSessionInitListener(this);
@@ -88,7 +88,6 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
                     [locationId](std::shared_ptr<Card> card) -> bool {
                         return card->getTypeId() == locationId;
                     });
-            player->setLocation(*it);
             dynamic_cast<LocationCard *>((*it).get())->toJson(dataObject);
             broadcastMessage["eventId"] = 1;
             broadcastMessage["user"] = player->getName();
@@ -115,7 +114,6 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
             dataObject["location"] = dataObject;
 
             nlohmann::json locationMetadataJson;
-            dynamic_cast<const LocationCardMetadata *>(player->getLocation()->getMetadata())->toJson(locationMetadataJson);
             dataObject["location_info"] = locationMetadataJson;
             break;
         }

@@ -20,6 +20,7 @@ void RoleCardMetadata::load()
     ActiveCardMetadata::load();
 
     fillSkills(_skills);
+    fillMastery(_mastery);
 }
 
 const std::pair<int, int> RoleCardMetadata::getSkillAmount(ActiveCardMetadata::Skill skill) const
@@ -29,5 +30,13 @@ const std::pair<int, int> RoleCardMetadata::getSkillAmount(ActiveCardMetadata::S
                 return item.first == skill;
             });
     return it == _skills.end() ? std::pair<int, int>(0, 0) : it->second;
+}
+
+bool RoleCardMetadata::hasMastery(ActiveCardMetadata::Mastery mastery) const {
+    return std::find(_mastery.begin(), _mastery.end(), mastery) != _mastery.end();
+}
+
+const RoleCardMetadata::RoleStartHandCardTypes &RoleCardMetadata::getStartHandCardTypes() const {
+    return _startHandCardTypes;
 }
 

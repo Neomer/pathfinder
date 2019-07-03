@@ -41,3 +41,7 @@ void DaggerMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribut
     attributes.push_back(CardAttribute::LongRange);
     attributes.push_back(CardAttribute::Piercing);
 }
+
+void DaggerMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Agility, Skill::LongRange }, 3);
+}

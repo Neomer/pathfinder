@@ -52,3 +52,22 @@ void EzrenMetadata::fillSkills(RoleCardMetadata::RoleSkillCollection &skills)
     skills.emplace_back(Skill::Wisdom, std::pair<int, int>(8, 0));
     skills.emplace_back(Skill::Charisma, std::pair<int, int>(6, 0));
 }
+
+void EzrenMetadata::fillMastery(RoleCardMetadata::RoleMastery &mastery) {
+
+}
+
+uint8_t EzrenMetadata::getHandSize() const {
+    return 6;
+}
+
+void EzrenMetadata::fillStartHandCardTypes(RoleCardMetadata::RoleStartHandCardTypes &startHandCardTypes) {
+    startHandCardTypes.emplace_back(CardType::Weapon, 1);
+    startHandCardTypes.emplace_back(CardType::Spell, 8);
+    startHandCardTypes.emplace_back(CardType::Thing, 3);
+    startHandCardTypes.emplace_back(CardType::Companion, 3);
+}
+
+CardMetadata::CardType EzrenMetadata::getFavouriteCardType() const {
+    return CardType::Spell;
+}

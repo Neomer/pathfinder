@@ -27,6 +27,9 @@ public:
 
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
+
+    void fillCardsTakenConditions(CardTakenConditions &conditions) override;
+
 };
 
 #endif //GAME_SERVER_DAGGER_H

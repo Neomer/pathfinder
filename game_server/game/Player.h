@@ -7,11 +7,14 @@
 
 #include <memory>
 #include <string>
-#include "cards/Card.h"
+#include <string_view>
+#include "cards/RoleCard.h"
 #include "Deck.h"
 
 class Player {
 public:
+    Player(std::string_view name);
+
     const std::string &getName() const;
 
     void setName(const std::string &name);
@@ -20,15 +23,13 @@ public:
 
     void setRole(const std::shared_ptr<Card> &role);
 
-    const std::shared_ptr<Card> &getLocation() const;
-
-    void setLocation(const std::shared_ptr<Card> &location);
+    void createUserDeck();
 
 private:
     Deck _activeDeck, _usedDeck;
     std::string _name;
     std::shared_ptr<Card> _role;
-    std::shared_ptr<Card> _location;
+    const RoleCardMetadata *_roleMetadata;
 };
 
 

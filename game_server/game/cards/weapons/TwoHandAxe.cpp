@@ -41,3 +41,7 @@ void TwoHandAxeMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttr
     attributes.push_back(CardAttribute::TwoHand);
     attributes.push_back(CardAttribute::Slashing);
 }
+
+void TwoHandAxeMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 10);
+}

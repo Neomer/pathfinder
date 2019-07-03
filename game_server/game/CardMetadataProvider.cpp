@@ -45,7 +45,7 @@ CardMetadataProvider::CardMetadataProvider()
 void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 {
     if (getMetadata(metadata->TypeId()) != nullptr) {
-        throw std::logic_error("Метаданные с типом "s + std::to_string(metadata->TypeId()) + " уже зарегистрирован!");
+        throw std::logic_error("Метаданные с идентификатором типа "s + std::to_string(metadata->TypeId()) + " уже зарегистрирован! Не удалось зарегистрировать тип: " + metadata->getTypeName());
     }
     _metadataVector.push_back(metadata);
 }
@@ -53,6 +53,11 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/spells/HealCard.h"
 #include "cards/armors/MagicChainMail.h"
 #include "cards/armors/MagicShield.h"
+#include "cards/armors/ChainMail.h"
+#include "cards/armors/ElvenChainMail.h"
+#include "cards/armors/Breastplate.h"
+#include "cards/armors/LeatherArmor.h"
+#include "cards/armors/MagicBreastplate.h"
 #include "cards/things/AmuletOfLife.h"
 #include "cards/locations/ForestLocationCard.h"
 #include "cards/scenario/Rubiih.h"
@@ -94,22 +99,28 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/bosses/DjabralWiskey.h"
 #include "cards/roles/Ezren.h"
 #include "cards/roles/Harsk.h"
+#include "cards/roles/Kaira.h"
 
 void CardMetadataProvider::init()
 {
     Logger::getInstace().log("Start cards metadata initialization");
 
     //region Spell metadata
-    registerMetadata(new HealCardMetadata());
+    //registerMetadata(new HealCardMetadata());
     //endregion
 
     //region Armor metadata
     registerMetadata(new MagicChainMailMetadata());
     registerMetadata(new MagicShieldMetadata());
+    registerMetadata(new ChainMailMetadata());
+    registerMetadata(new ElvenChainMailMetadata());
+    registerMetadata(new BreastplateMetadata());
+    registerMetadata(new LeatherArmorMetadata());
+    registerMetadata(new MagicBreastplateMetadata());
     //endregion
 
     //region Thing metadata
-    registerMetadata(new AmuletOfLifeMetadata());
+    //registerMetadata(new AmuletOfLifeMetadata());
     //endregion
 
     //region Location metadata
@@ -171,6 +182,7 @@ void CardMetadataProvider::init()
     //region Role metadata
     registerMetadata(new EzrenMetadata());
     registerMetadata(new HarskMetadata());
+    registerMetadata(new KairaMetadata());
     //endregion
 
     for (auto metadata : _metadataVector) {

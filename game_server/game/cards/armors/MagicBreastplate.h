@@ -1,19 +1,18 @@
 //
-// Created by kir on 01.07.19.
+// Created by vinokurov on 03.07.2019.
 //
 
-#ifndef GAME_SERVER_LIGHTCROSSBOW_H
-#define GAME_SERVER_LIGHTCROSSBOW_H
+#ifndef GAME_SERVER_MAGICBREASTPLATE_H
+#define GAME_SERVER_MAGICBREASTPLATE_H
 
-#include "../WeaponCard.h"
+#include "../ArmorCard.h"
 
-class LightCrossbow : public ActiveCard
-{
+class MagicBreastplate : public ActiveCard {
 public:
     int getTypeId() const override;
 };
 
-class LightCrossbowMetadata : public WeaponCardMetadata
+class MagicBreastplateMetadata : public ArmorCardMetadata
 {
 public:
     std::string_view getCardTitle() const override;
@@ -32,4 +31,4 @@ protected:
     void fillCardsTakenConditions(CardTakenConditions &conditions) override;
 };
 
-#endif //GAME_SERVER_LIGHTCROSSBOW_H
+#endif //GAME_SERVER_MAGICBREASTPLATE_H
