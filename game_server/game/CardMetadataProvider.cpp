@@ -107,6 +107,7 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/roles/Ezren.h"
 #include "cards/roles/Harsk.h"
 #include "cards/roles/Kaira.h"
+#include "cards/companions/Burglar.h"
 
 void CardMetadataProvider::init()
 {
@@ -134,7 +135,7 @@ void CardMetadataProvider::init()
     //endregion
 
     //region Thing metadata
-    //registerMetadata(new AmuletOfLifeMetadata());
+    registerMetadata(new AmuletOfLifeMetadata());
     //endregion
 
     //region Location metadata
@@ -197,6 +198,10 @@ void CardMetadataProvider::init()
     registerMetadata(new EzrenMetadata());
     registerMetadata(new HarskMetadata());
     registerMetadata(new KairaMetadata());
+    //endregion
+
+    //region Companion metadata
+    registerMetadata(new BurglarMetadata());
     //endregion
 
     for (auto metadata : _metadataVector) {

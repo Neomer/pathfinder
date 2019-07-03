@@ -1,21 +1,19 @@
 //
-// Created by vinokurov on 29.06.2019.
+// Created by kir on 03.07.19.
 //
 
-#ifndef GAME_SERVER_AMULETOFLIFE_H
-#define GAME_SERVER_AMULETOFLIFE_H
+#ifndef GAME_SERVER_BURGLAR_H
+#define GAME_SERVER_BURGLAR_H
 
-#include "../ThingCard.h"
+#include "../CompanionCard.h"
 
-class AmuletOfLife : public ActiveCard
+class Burglar : public ActiveCard
 {
 public:
-    ~AmuletOfLife() override;
-
     int getTypeId() const override;
 };
 
-class AmuletOfLifeMetadata : public ThingCardMetadata
+class BurglarMetadata : public CompanionCardMetadata
 {
 public:
     std::string_view getCardTitle() const override;
@@ -34,5 +32,4 @@ protected:
     void fillCardsTakenConditions(CardTakenConditions &conditions) override;
 };
 
-
-#endif //GAME_SERVER_AMULETOFLIFE_H
+#endif //GAME_SERVER_BURGLAR_H

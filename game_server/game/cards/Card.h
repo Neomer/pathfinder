@@ -170,6 +170,8 @@ public:
         Attention,      // Внимание
         Survival,       // Выживание
         Faith,          // Вера
+        Stealth,        // Скрытность
+        Diplomacy,      // Дипломатия
     };
 
     enum class Mastery

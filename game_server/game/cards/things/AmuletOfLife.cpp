@@ -9,7 +9,7 @@ std::string_view AmuletOfLifeMetadata::getCardTitle() const {
 }
 
 const char *AmuletOfLifeMetadata::getTypeName() const {
-    return "AmuletOfLifr";
+    return "AmuletOfLife";
 }
 
 const char *AmuletOfLifeMetadata::getDescription() const {
@@ -20,17 +20,19 @@ std::shared_ptr<Card> AmuletOfLifeMetadata::createInstance() const {
     return std::shared_ptr<Card>(new AmuletOfLife());
 }
 
-bool AmuletOfLifeMetadata::isBeginnerLevel() const {
-    return true;
-}
-
 int AmuletOfLifeMetadata::TypeId() const {
     return 200;
 }
 
 void AmuletOfLifeMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) {
+    attributes.push_back(CardAttribute::BeginnerLevel);
     attributes.push_back(CardAttribute::Magic);
     attributes.push_back(CardAttribute::Decoration);
+}
+
+void AmuletOfLifeMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms }, 4);
 }
 
 AmuletOfLife::~AmuletOfLife() {
