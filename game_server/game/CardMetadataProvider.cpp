@@ -51,6 +51,13 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 }
 
 #include "cards/spells/HealCard.h"
+#include "cards/spells/AcidArrow.h"
+#include "cards/spells/Help.h"
+#include "cards/spells/MysticalArmor.h"
+#include "cards/spells/Divination.h"
+#include "cards/spells/Charm.h"
+#include "cards/spells/EvilDetection.h"
+#include "cards/spells/MagicDetection.h"
 #include "cards/armors/MagicChainMail.h"
 #include "cards/armors/MagicShield.h"
 #include "cards/armors/ChainMail.h"
@@ -106,7 +113,14 @@ void CardMetadataProvider::init()
     Logger::getInstace().log("Start cards metadata initialization");
 
     //region Spell metadata
-    //registerMetadata(new HealCardMetadata());
+    registerMetadata(new HealCardMetadata());
+    registerMetadata(new AcidArrowMetadata());
+    registerMetadata(new HelpMetadata());
+    registerMetadata(new MysticalArmorMetadata());
+    registerMetadata(new DivinationMetadata());
+    registerMetadata(new CharmMetadata());
+    registerMetadata(new EvilDetectionMetadata());
+    registerMetadata(new MagicDetectionMetadata());
     //endregion
 
     //region Armor metadata

@@ -21,6 +21,7 @@ void RoleCardMetadata::load()
 
     fillSkills(_skills);
     fillMastery(_mastery);
+    fillStartHandCardTypes(_startHandCardTypes);
 }
 
 const std::pair<int, int> RoleCardMetadata::getSkillAmount(ActiveCardMetadata::Skill skill) const

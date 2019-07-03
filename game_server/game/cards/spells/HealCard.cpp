@@ -21,13 +21,14 @@ int HealCardMetadata::TypeId() const {
 }
 
 void HealCardMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) {
+    attributes.push_back(CardAttribute::BeginnerLevel);
     attributes.push_back(CardAttribute::Magic);
     attributes.push_back(CardAttribute::Faith);
     attributes.push_back(CardAttribute::Heal);
 }
 
-bool HealCardMetadata::isBeginnerLevel() const {
-    return true;
+void HealCardMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+    conditions.emplace_back(std::vector{ Skill::Wisdom, Skill::Faith }, 6);
 }
 
 int HealCard::getTypeId() const {

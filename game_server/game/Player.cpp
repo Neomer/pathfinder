@@ -57,9 +57,11 @@ void Player::createUserDeck() {
         if (availableCards.empty()) {
             continue;
         }
-        auto selectedCardMetadata = availableCards.at(rand() % availableCards.size());
-        Logger::getInstace().log("Selected card: "s + selectedCardMetadata->getTypeName());
-        _activeDeck.push(selectedCardMetadata->createInstance());
+        while (cardType.second--) {
+            auto selectedCardMetadata = availableCards.at(rand() % availableCards.size());
+            Logger::getInstace().log("Selected card: "s + selectedCardMetadata->getTypeName());
+            _activeDeck.push(selectedCardMetadata->createInstance());
+        }
     }
 }
 

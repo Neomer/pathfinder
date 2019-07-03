@@ -1,26 +1,28 @@
 //
-// Created by vinokurov on 29.06.2019.
+// Created by kir on 03.07.19.
 //
 
-#ifndef GAME_SERVER_HEALCARD_H
-#define GAME_SERVER_HEALCARD_H
+#ifndef GAME_SERVER_ACIDARROW_H
+#define GAME_SERVER_ACIDARROW_H
 
 #include "../SpellCard.h"
 
-class HealCard : public Card
+class AcidArrow : public ActiveCard
 {
 public:
     int getTypeId() const override;
 };
 
-class HealCardMetadata : public SpellCardMetadata
+class AcidArrowMetadata : public SpellCardMetadata
 {
 public:
-    std::shared_ptr<Card> createInstance() const override;
-
     std::string_view getCardTitle() const override;
 
     const char *getTypeName() const override;
+
+    const char *getDescription() const override;
+
+    std::shared_ptr<Card> createInstance() const override;
 
     int TypeId() const override;
 
@@ -30,4 +32,4 @@ protected:
     void fillCardsTakenConditions(CardTakenConditions &conditions) override;
 };
 
-#endif //GAME_SERVER_HEALCARD_H
+#endif //GAME_SERVER_ACIDARROW_H
