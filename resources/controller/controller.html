@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <input id="txt" type="text" />
+  <button onclick="send_name();">connect</button>
+  <script>
+    const webSocket = new WebSocket('ws://localhost:10555');
+    webSocket.onopen = event => {
+        alert('onopen');
+    };
+    webSocket.onmessage = event => {
+        alert('onmessage, ' + event.data);
+    };
+    webSocket.onclose = event => {
+        alert('onclose');
+    };
+
+    function send_name() {
+      send(1, { name: $('#txt').val() });
+    };
+
+    function send(eventId, data) {
+    }
+
+  </script>
+</body>
+</html>
