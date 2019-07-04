@@ -6,19 +6,18 @@
 #include "cards/locations/LocationCard.h"
 #include "CardMetadataProvider.h"
 #include "../Logger.h"
-#include "../network/WebSocket.h"
+#include "../network/WebSocketServer.h"
 
 using namespace std::string_literals;
 
-Game::Game(Card *scenario) :
+Game::Game(Card *scenario, std::string_view securityKey) :
     _scenario{ scenario },
-    _webServer{ new WebSocketServer() },
-    _playerServer{ new TcpServer() },
-    _movesLeft{ 50 }
+    _playerServer{ new WebSocketServer() },
+    _movesLeft{ 50 },
+    _securityKey{ securityKey },
+    _spectatorDispatcher{ new SpectatorsDispatcher(new WebSocketServer()) }
 {
-    _scenarioMetadata = dynamic_cast<const ScenarioMetadata *>
-    (CardMetadataProvider::getInstance().getMetadata(scenario->getTypeId()));
-
+    _scenarioMetadata = dynamic_cast<const ScenarioMetadata *>(CardMetadataProvider::getInstance().getMetadata(scenario->getTypeId()));
 }
 
 void Game::run(int numPlayers) {
@@ -37,10 +36,6 @@ void Game::run(int numPlayers) {
 
     _playerServer->setConnectionAcceptedListener(this);
     _playerServer->listen(10555);
-
-    _webServer->setConnectionAcceptedListener(this);
-    _webServer->listen(11555);
-
 }
 
 void Game::onConnectionAccepted(const TcpServer *server, TcpSocket *socket) {
@@ -48,18 +43,12 @@ void Game::onConnectionAccepted(const TcpServer *server, TcpSocket *socket) {
     socket->setConnectionClosedListener(this);
     if (server == _playerServer) {
         Logger::getInstace().log("New player connected");
-        _players.emplace_back(socket, new Player("Player "s + std::to_string(_players.size() + 1)));
-    } else {
-        Logger::getInstace().log("New spectator connected");
-        dynamic_cast<WebSocket *>(socket)->setOnWebSocketSessionInitListener(this);
-        _spectators.push_back(socket);
+        _players.push_back(new Player(socket));
     }
 }
 
 void Game::onConnectionClosed(const TcpSocket *socket) {
     Logger::getInstace().log("Someone disconnect...");
-    _spectators.erase(std::remove(_spectators.begin(), _spectators.end(), socket), _spectators.end());
-    //_players.erase(std::remove(_players.begin(), _players.end(), socket), _players.end());
 }
 
 void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
@@ -69,87 +58,19 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
         return;
     }
     Logger::getInstace().log("Receive: "s + json.dump());
-    nlohmann::json answer, dataObject, broadcastMessage;
     int eventId = json["eventId"];
-    answer["eventId"] = eventId;
-    Logger::getInstace().log("Event: "s + std::to_string(eventId));
-    switch (eventId) {
-        case 1:
-        {
-            player->setName(json["data"]["id"]);
-            _scenarioMetadata->toJson(dataObject);
-            break;
-        }
-
-        case 2:
-        {
-            auto locationId = json["data"]["locationId"];
-            auto it = std::find_if(_locations.begin(), _locations.end(),
-                    [locationId](std::shared_ptr<Card> card) -> bool {
-                        return card->getTypeId() == locationId;
-                    });
-            dynamic_cast<LocationCard *>((*it).get())->toJson(dataObject);
-            broadcastMessage["eventId"] = 1;
-            broadcastMessage["user"] = player->getName();
-            broadcastMessage["userPerson"] = "Харск";
-            broadcastMessage["data"]["user"]["name"] = player->getName();
-            broadcastMessage["data"]["user"]["person"] = "Харск";
-            broadcastMessage["data"]["user"]["location"] = dataObject;
-            broadcast(_spectators, broadcastMessage);
-            break;
-        }
-
-        case 3: {
-            broadcastMessage["eventId"] = 1;
-            broadcastMessage["user"] = player->getName();
-            broadcastMessage["userPerson"] = "Харск";
-            broadcastMessage["data"]["user"]["name"] = player->getName();
-            broadcastMessage["data"]["user"]["person"] = "Харск";
-            broadcastMessage["data"]["user"]["location"] = dataObject;
-            broadcastMessage["data"]["moves_left"] = _movesLeft;
-            broadcastMessage["data"]["moves_left"] = _movesLeft;
-            broadcast(_spectators, broadcastMessage);
-
-            dataObject["moves_left"] = _movesLeft;
-            dataObject["location"] = dataObject;
-
-            nlohmann::json locationMetadataJson;
-            dataObject["location_info"] = locationMetadataJson;
-            break;
-        }
-    }
-    answer["data"] = dataObject;
-    Logger::getInstace().log("Answer: "s + answer.dump());
-    socket->write(answer);
-}
-
-void Game::broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json) {
-    Logger::getInstace().log("Broadcast: "s + json.dump());
-    for (auto item : sockets) {
-        item->write(json);
-    }
 }
 
 Player *Game::getPlayerBySocket(const TcpSocket *socket) {
     auto it = std::find_if(_players.begin(), _players.end(),
-                     [socket](const std::pair<TcpSocket *, Player *> &item) -> bool {
-                         return item.first == socket;
+                     [socket](const Player *item) -> bool {
+                         return item->getTransportPipeConst() == socket;
                      });
-    return it == _players.end() ? nullptr : (*it).second;
+    return it == _players.end() ? nullptr : *it;
 }
 
-void Game::onSessionInit(WebSocket *socket) {
-    nlohmann::json gameInfo;
-
-    gameInfo["eventId"] = 0;
-    gameInfo["user"] = "John";
-    gameInfo["userPerson"] = "Харск";
-
-    nlohmann::json dataObject;
-    _scenarioMetadata->toJson(dataObject);
-    gameInfo["data"] = dataObject;
-
-
-    Logger::getInstace().log("Game Info: "s + gameInfo.dump());
-    socket->write(gameInfo);
+Game::~Game()
+{
+    delete _spectatorDispatcher;
+    delete _playerServer;
 }

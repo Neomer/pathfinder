@@ -10,8 +10,8 @@
 
 using namespace std::string_literals;
 
-Player::Player(std::string_view name) :
-    _name{ name },
+Player::Player(TcpSocket *socket) :
+    _socket{ socket },
     _role{ nullptr }
 {
 
@@ -47,21 +47,29 @@ void Player::createUserDeck() {
     Logger::getInstace().log("Start generating player's active deck...");
     auto startHandCardTypes = _roleMetadata->getStartHandCardTypes();
     for (auto &cardType : startHandCardTypes) {
-        Logger::getInstace().log("Card type: "s + std::to_string((int)cardType.first) + " count=" + std::to_string(cardType.second));
         auto availableCards = CardMetadataProvider::getInstance().getMetadata(
                 [cardType](const CardMetadata *metadata) -> bool {
                     auto handTakable = dynamic_cast<const HandTakableCardMetadata *>(metadata);
                     return handTakable != nullptr && handTakable->isBeginnerLevel() && handTakable->getCardType() == cardType.first;
                 });
-        Logger::getInstace().log("Available cards: "s + std::to_string(availableCards.size()));
         if (availableCards.empty()) {
             continue;
         }
         while (cardType.second--) {
             auto selectedCardMetadata = availableCards.at(rand() % availableCards.size());
-            Logger::getInstace().log("Selected card: "s + selectedCardMetadata->getTypeName());
             _activeDeck.push(selectedCardMetadata->createInstance());
         }
     }
+    Logger::getInstace().log("Player's deck ready!");
+}
+
+TcpSocket *Player::getTransportPipe()
+{
+    return _socket;
+}
+
+const TcpSocket *Player::getTransportPipeConst() const
+{
+    return _socket;
 }
 

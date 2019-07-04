@@ -24,12 +24,8 @@ int main()
     CardMetadataProvider::getInstance().init();
     Logger::getInstace().log("Metadata intialization time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
 
-    Player player("Timur");
-    player.setRole(CardMetadataProvider::getInstance().getMetadata(800)->createInstance());
-    player.createUserDeck();
-
     Card *scenario = new Rubiih();
-    Game game(scenario);
+    Game game(scenario, "password");
     game.run(1);
 
 

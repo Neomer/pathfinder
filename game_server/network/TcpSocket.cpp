@@ -121,7 +121,7 @@ void TcpSocket::writeRawData(const char *data, size_t size) {
     send(_socketDescriptor, data, size, 0);
 }
 
-void TcpSocket::write(nlohmann::json &json) {
+void TcpSocket::write(const nlohmann::json &json) {
     writeRawData(json.dump());
 }
 

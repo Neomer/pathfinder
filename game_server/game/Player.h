@@ -10,10 +10,11 @@
 #include <string_view>
 #include "cards/RoleCard.h"
 #include "Deck.h"
+#include "../network/TcpSocket.h"
 
 class Player {
 public:
-    Player(std::string_view name);
+    Player(TcpSocket *socket);
 
     const std::string &getName() const;
 
@@ -25,7 +26,12 @@ public:
 
     void createUserDeck();
 
+    TcpSocket *getTransportPipe();
+
+    const TcpSocket *getTransportPipeConst() const;
+
 private:
+    TcpSocket *_socket;
     Deck _activeDeck, _usedDeck;
     std::string _name;
     std::shared_ptr<Card> _role;

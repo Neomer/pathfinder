@@ -29,7 +29,7 @@ public:
 
     void close();
 
-    virtual void write(nlohmann::json &json);
+    virtual void write(const nlohmann::json &json);
 
     void setConnectionClosedListener(IConnectionClosedListener *listener);
 
