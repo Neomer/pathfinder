@@ -22,6 +22,7 @@ bool RestSocket::prepareRawData(char **buffer, size_t *size)
         return false;
     }
     *buffer = headerIdx + 4;
+    return true;
 }
 
 void RestSocket::writeRawData(std::string_view str)
