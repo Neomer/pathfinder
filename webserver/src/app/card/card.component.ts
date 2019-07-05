@@ -9,10 +9,8 @@ import { IMessageData } from '../models/IMessageData';
 })
 export class CardComponent implements OnInit {
 
-  private cards : ICard[] = [];
   private scenario : ICard;
   private locations : ICard[] = [];
-  private imageUrls: string = 'assets/images/';
 
   constructor(private communicationservice: CommunicationServiceService ) {
     this.communicationservice = communicationservice;
@@ -52,10 +50,10 @@ export class CardComponent implements OnInit {
 
   public onMessage(messageData: IMessageData)
   {
-      // if (messageData.eventId !== 1)
-      // {
-      //   return;
-      // } 
+      if (messageData.eventId !== 0)
+      {
+        return;
+      }  
       debugger;
       console.log('cardcomponent: ' + messageData);
       var newCards: ICard[] = JSON.parse(messageData.data)
@@ -68,31 +66,27 @@ export class CardComponent implements OnInit {
   private updateCards(newCards : ICard[])
   {
     newCards.forEach(element => {
-      var index = this.cards.findIndex(a => a.typeId == element.typeId);
+      var index = this.communicationservice.cards.findIndex(a => a.typeId == element.typeId);
       if (index >= 0){
-        this.cards[index] = element
+        this.communicationservice.cards[index] = element
       }
       else{
-        this.cards.push(element);
+        this.communicationservice.cards.push(element);
       }
     });
-    this.scenario = this.cards.find(a => a.typeName === 'scenario');
-    this.locations = this.cards.filter(a => a.typeName === 'location');
+    this.scenario = this.communicationservice.cards.find(a => a.typeName === 'scenario');
+    this.locations = this.communicationservice.cards.filter(a => a.typeName === 'location');
     this.communicationservice.scene = 0;
   }
 
   getImage(card :ICard)
-  {
-    if (card === undefined)
-    {
-      return this.imageUrls + 'undefined.png';
-    }
-    return this.imageUrls + card.typeName + '/' + card.title + '.png';
+  { 
+    return this.communicationservice.getImage(card);
   }
 
   getPesonImage()
   {
-    var card = this.cards.find(a=> a.title == this.communicationservice.userPerson);
+    var card = this.communicationservice.cards.find(a=> a.title == this.communicationservice.userPerson);
     return this.getImage(card);
   }
 
