@@ -29,7 +29,34 @@ WebSocket::~WebSocket() {
 
 bool WebSocket::prepareRawData(char **buffer, size_t *size) {
     if (_state == ChannelState::Ready) {
+        uint8_t b1 = **buffer;
+        uint8_t b2 = (*buffer)[1];
+        bool isFinal = b1 & 0x80;
+        auto opcode = b1 & 0x0F;
+        bool mask = b2 & 0x80;
+        bool small_pkg = (b2 & 0x7F) <= 125;
+        uint16_t length = 0;
+        if (small_pkg) {
+            length = b2 & 0x7F;
+        } else {
+            memcpy(&length, *buffer + 2, 2);
+        }
+        Logger::getInstace().log("Package received: FIN="s + std::to_string(isFinal) + " OPCODE=" + std::to_string(opcode) + " MASK="s + std::to_string(mask) + " LEN=" + std::to_string(length));
 
+        if (mask) {
+            uint8_t masking_key[4];
+            memcpy(masking_key, *buffer + (small_pkg ? 2 : 4), 4);
+
+            Logger::getInstace().log("Decompiling data...");
+            auto start = std::chrono::steady_clock::now();
+            for (uint16_t idx = 0; idx < length; ++idx) {
+                (*buffer)[idx] = (*buffer)[idx + 6] ^ masking_key[idx % 4];
+            }
+            Logger::getInstace().log("Data ready. Process time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
+            *size = length;
+        } else {
+            *buffer += 2;
+        }
     } else {
         if (strstr(*buffer, "\r\n\r\n") == nullptr) {
             return false;
