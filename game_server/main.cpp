@@ -26,9 +26,6 @@ int main()
 
     Card *scenario = new Rubiih();
     Game game(scenario, "password");
-    game.run(1);
-
-
 
     auto cmd = '0';
     while (cmd != 'q') {

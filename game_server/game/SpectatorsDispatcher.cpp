@@ -27,6 +27,7 @@ void SpectatorsDispatcher::onConnectionAccepted(const TcpServer *server, TcpSock
 {
     Logger::getInstace().log("New spectator joined.");
     socket->setConnectionClosedListener(this);
+    socket->setDataArrivedListener(this);
     _spectators.push_back(socket);
 }
 
@@ -39,6 +40,7 @@ void SpectatorsDispatcher::broadcast(const nlohmann::json &json)
 
 void SpectatorsDispatcher::onConnectionClosed(const TcpSocket *socket)
 {
+    Logger::getInstace().log("Spectator disconnected.");
     auto it = std::remove(_spectators.begin(), _spectators.end(), socket);
     std::for_each(it, _spectators.end(),
             [](TcpSocket *socket) {

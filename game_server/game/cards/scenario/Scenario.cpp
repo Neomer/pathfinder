@@ -3,8 +3,11 @@
 //
 
 #include "Scenario.h"
+#include "../../../Logger.h"
 #include "../locations/LocationCard.h"
 #include "../../CardMetadataProvider.h"
+
+using namespace std::string_literals;
 
 CardMetadata::CardType ScenarioMetadata::getCardType() const {
     return CardType::Scenario;
@@ -34,4 +37,19 @@ void ScenarioMetadata::toJson(nlohmann::json &json) const {
 
 void Scenario::toJson(nlohmann::json &json) const {
 
+}
+
+void Scenario::loadLocations(uint8_t playersCount)
+{
+    auto scenarioMetadata = dynamic_cast<const ScenarioMetadata *>(getMetadata());
+    for (auto &loc : scenarioMetadata->getLocationsByPlayers()) {
+        if (loc.first <= playersCount) {
+            auto locationMetadata = dynamic_cast<const LocationCardMetadata *>(CardMetadataProvider::getInstance().getMetadata(loc.second));
+            if (locationMetadata == nullptr) {
+                Logger::getInstace().log("TypeId "s + std::to_string(loc.second) + " is not Location for scenario " + scenarioMetadata->getTypeName());
+                continue;
+            }
+            _locations.push_back(locationMetadata->createInstance());
+        }
+    }
 }

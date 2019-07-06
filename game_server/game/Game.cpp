@@ -11,28 +11,12 @@
 using namespace std::string_literals;
 
 Game::Game(Card *scenario, std::string_view securityKey) :
-    _scenario{ scenario },
     _playerServer{ new WebSocketServer() },
-    _movesLeft{ 50 },
     _securityKey{ securityKey },
-    _spectatorDispatcher{ new SpectatorsDispatcher(new WebSocketServer()) }
+    _spectatorDispatcher{ new SpectatorsDispatcher(new WebSocketServer()) },
+    _context{ new GameContext() }
 {
-    _scenarioMetadata = dynamic_cast<const ScenarioMetadata *>(CardMetadataProvider::getInstance().getMetadata(scenario->getTypeId()));
-}
-
-void Game::run(int numPlayers) {
-
-    std::for_each(_scenarioMetadata->getLocationsByPlayers().begin(), _scenarioMetadata->getLocationsByPlayers().end(),
-            [this, numPlayers](const std::pair<int, int> &loc) {
-                if (loc.first <= numPlayers) {
-                    auto metadata = CardMetadataProvider::getInstance().getMetadata(loc.second);
-                    if (metadata != nullptr) {
-                        auto location = metadata->createInstance();
-                        dynamic_cast<LocationCard *>(location.get())->createDeck();
-                        this->_locations.push_back(location);
-                    }
-                }
-            });
+    _context->setScenario(dynamic_cast<Scenario *>(scenario));
 
     _playerServer->setConnectionAcceptedListener(this);
     _playerServer->listen(10555);
@@ -73,4 +57,10 @@ Game::~Game()
 {
     delete _spectatorDispatcher;
     delete _playerServer;
+    delete _context;
+}
+
+GameContext *Game::getContext()
+{
+    return _context;
 }

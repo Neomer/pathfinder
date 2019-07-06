@@ -10,7 +10,12 @@
 class Scenario : public Card
 {
 public:
+    virtual void loadLocations(uint8_t playersCount);
+
     virtual void toJson(nlohmann::json &json) const;
+
+private:
+    std::vector<std::shared_ptr<Card>> _locations;
 };
 
 class ScenarioMetadata : public CardMetadata {

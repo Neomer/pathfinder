@@ -11,6 +11,7 @@
 #include "../network/IDataArrivedListener.h"
 #include "Player.h"
 #include "SpectatorsDispatcher.h"
+#include "GameContext.h"
 
 
 class TcpSocket;
@@ -34,19 +35,16 @@ public:
 
     void onDataArrived(TcpSocket *socket, nlohmann::json &json) override;
 
+    GameContext *getContext();
+
 private:
-    void broadcast(std::vector<TcpSocket *> &sockets, nlohmann::json &json);
     Player *getPlayerBySocket(const TcpSocket *socket);
 
-    std::string _securityKey;
-    Card *_scenario;
-    const ScenarioMetadata *_scenarioMetadata;
-    std::vector<std::shared_ptr<Card>> _locations;
-    uint8_t _movesLeft;
+    GameContext *_context;
 
+    std::string _securityKey;
     TcpServer *_playerServer;
     std::vector<Player *> _players;
-
     SpectatorsDispatcher *_spectatorDispatcher;
 
 };
