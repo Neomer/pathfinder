@@ -21,6 +21,8 @@ public:
 
     virtual const CardMetadata *getMetadata() const;
 
+    virtual void toJson(nlohmann::json &json) const;
+
 };
 
 class ActiveCard : public Card

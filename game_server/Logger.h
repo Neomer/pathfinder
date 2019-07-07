@@ -20,6 +20,12 @@ public:
     void log(std::thread::id threadId, std::string_view text);
     void log(std::string_view text);
 
+    void error(std::thread::id threadId, std::string_view text);
+    void error(std::string_view text);
+
+    void info(std::thread::id threadId, std::string_view text);
+    void info(std::string_view text);
+
 private:
     Logger();
 

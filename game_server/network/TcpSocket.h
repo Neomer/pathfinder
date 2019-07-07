@@ -12,7 +12,7 @@
 #include <mutex>
 #include <condition_variable>
 #include "../modules/json/single_include/nlohmann/json.hpp"
-
+#include "packages/Package.h"
 
 class IConnectionClosedListener;
 
@@ -30,6 +30,8 @@ public:
     void close();
 
     virtual void write(const nlohmann::json &json);
+
+    virtual void write(const ::Package &package);
 
     void setConnectionClosedListener(IConnectionClosedListener *listener);
 

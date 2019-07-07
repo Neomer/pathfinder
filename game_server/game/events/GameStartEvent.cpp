@@ -5,12 +5,12 @@
 #include "GameStartEvent.h"
 #include "../Game.h"
 
-bool GameStartEvent::isEventSupported(int eventId)
+bool GameStartEvent::isEventSupported(int eventId) const
 {
     return eventId == 1;
 }
 
-void GameStartEvent::process(Player &player, const nlohmann::json &requestData, Game &game)
+void GameStartEvent::process(Player &player, const nlohmann::json &requestData, Game &game) const
 {
-    game.getContext()->getScenario()->loadLocations(game.getContext()->getPlayers().size());
+    game.getContext().getScenario()->loadLocations(game.getContext().getPlayers().size());
 }

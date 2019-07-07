@@ -25,7 +25,7 @@ SpectatorsDispatcher::~SpectatorsDispatcher()
 
 void SpectatorsDispatcher::onConnectionAccepted(const TcpServer *server, TcpSocket *socket)
 {
-    Logger::getInstace().log("New spectator joined.");
+    Logger::getInstace().info("New spectator joined.");
     socket->setConnectionClosedListener(this);
     socket->setDataArrivedListener(this);
     _spectators.push_back(socket);
@@ -40,7 +40,7 @@ void SpectatorsDispatcher::broadcast(const nlohmann::json &json)
 
 void SpectatorsDispatcher::onConnectionClosed(const TcpSocket *socket)
 {
-    Logger::getInstace().log("Spectator disconnected.");
+    Logger::getInstace().info("Spectator disconnected.");
     auto it = std::remove(_spectators.begin(), _spectators.end(), socket);
     std::for_each(it, _spectators.end(),
             [](TcpSocket *socket) {
@@ -52,4 +52,11 @@ void SpectatorsDispatcher::onConnectionClosed(const TcpSocket *socket)
 void SpectatorsDispatcher::onDataArrived(TcpSocket *socket, nlohmann::json &json)
 {
     Logger::getInstace().log("Spectator sent some data...");
+}
+
+void SpectatorsDispatcher::broadcast(const Package &package)
+{
+    nlohmann::json json;
+    package.toJson(json);
+    broadcast(json);
 }

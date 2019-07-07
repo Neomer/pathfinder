@@ -4,6 +4,13 @@
 
 #include "GameContext.h"
 
+GameContext::GameContext() :
+        _currentPlayerIdx{ 0 },
+        _movesLeft{ 50 }
+{
+
+}
+
 Scenario *GameContext::getScenario() const
 {
     return _scenario;
@@ -38,4 +45,15 @@ const std::vector<Player *> &GameContext::getPlayers() const
 void GameContext::addPlayer(Player *player)
 {
     _players.push_back(player);
+}
+
+const Player *GameContext::getCurrentPlayer() const
+{
+    return _players.at(_currentPlayerIdx);
+}
+
+void GameContext::nextTurn()
+{
+    _currentPlayerIdx = _currentPlayerIdx < _players.size() - 1 ? _currentPlayerIdx + 1 : 0;
+    --_movesLeft;
 }

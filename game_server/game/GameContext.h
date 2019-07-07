@@ -11,6 +11,8 @@
 class GameContext
 {
 public:
+    GameContext();
+
     Scenario *getScenario() const;
 
     void setScenario(Scenario *scenario);
@@ -25,11 +27,16 @@ public:
 
     void addPlayer(Player *player);
 
+    const Player *getCurrentPlayer() const;
+
+    void nextTurn();
+
 private:
     Scenario *_scenario;
     const ScenarioMetadata *_scenarioMetadata;
     uint8_t _movesLeft;
     std::vector<Player *> _players;
+    uint8_t _currentPlayerIdx;
 };
 
 

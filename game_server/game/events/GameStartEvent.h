@@ -10,9 +10,11 @@
 class GameStartEvent : public EventProcessor
 {
 public:
-    bool isEventSupported(int eventId) override;
+    ~GameStartEvent() override = default;
 
-    void process(Player &player, const nlohmann::json &requestData, Game &game) override;
+    bool isEventSupported(int eventId) const override;
+
+    void process(Player &player, const nlohmann::json &requestData, Game &game) const override;
 };
 
 

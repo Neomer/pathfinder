@@ -96,3 +96,8 @@ const char *CardMetadata::cardTypeToString(CardType type) {
 const CardMetadata *Card::getMetadata() const {
     return CardMetadataProvider::getInstance().getMetadata(getTypeId());
 }
+
+void Card::toJson(nlohmann::json &json) const
+{
+    getMetadata()->toJson(json);
+}

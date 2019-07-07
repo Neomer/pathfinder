@@ -11,6 +11,7 @@
 #include "../network/IConnectionAcceptedListener.h"
 #include "../network/IConnectionClosedListener.h"
 #include "../network/IDataArrivedListener.h"
+#include "../network/packages/Package.h"
 
 class SpectatorsDispatcher :
         public IConnectionAcceptedListener,
@@ -29,6 +30,8 @@ public:
     void onDataArrived(TcpSocket *socket, nlohmann::json &json) override;
 
     void broadcast(const nlohmann::json &json);
+
+    void broadcast(const Package &package);
 
 private:
     TcpServer *_server;

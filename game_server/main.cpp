@@ -4,6 +4,7 @@
 #include "game/CardMetadataProvider.h"
 #include "game/Game.h"
 #include "game/cards/scenario/Rubiih.h"
+#include "game/EventProvider.h"
 
 #include "game/Deck.h"
 
@@ -22,7 +23,9 @@ int main()
 #endif
     auto start = std::chrono::steady_clock::now();
     CardMetadataProvider::getInstance().init();
-    Logger::getInstace().log("Metadata intialization time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
+    Logger::getInstace().info("Metadata initialization time: "s + std::to_string(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - start).count()) + " mcsec");
+
+    EventProvider::getInstance().load();
 
     Card *scenario = new Rubiih();
     Game game(scenario, "password");
@@ -33,7 +36,7 @@ int main()
         if (cmd == 'a') {
         }
     }
-    Logger::getInstace().log("Finishing game server...");
+    Logger::getInstace().info("Finishing game server...");
 
 #ifdef _WIN32
     WSACleanup();

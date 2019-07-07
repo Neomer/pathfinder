@@ -1,5 +1,5 @@
 //
-// Created by vinokurov on 29.06.2019.
+// Created by kir on 07.07.19.
 //
 
 #ifndef GAME_SERVER_PACKAGE_H
@@ -7,21 +7,20 @@
 
 #include "../../modules/json/single_include/nlohmann/json.hpp"
 
-class Package {
-
+class Package
+{
 public:
+    enum class ResultStatus
+    {
+        Success,
+        Error
+    };
 
-    virtual void fromJson(nlohmann::json &json);
+    virtual uint32_t getEventId() const = 0;
 
-    virtual void toJson(nlohmann::json &json);
+    virtual ResultStatus getResultStatus() const = 0;
 
-    int getEventId() const;
-
-    void setEventId(int eventId);
-
-private:
-    int _eventId;
-
+    virtual void toJson(nlohmann::json &json) const;
 };
 
 

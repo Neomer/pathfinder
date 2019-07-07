@@ -128,3 +128,10 @@ void TcpSocket::write(const nlohmann::json &json) {
 void TcpSocket::writeRawData(std::string_view str) {
     writeRawData(str.data(), str.size());
 }
+
+void TcpSocket::write(const ::Package &package)
+{
+    nlohmann::json json;
+    package.toJson(json);
+    write(json);
+}

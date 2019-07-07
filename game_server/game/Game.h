@@ -27,24 +27,23 @@ public:
 
     virtual ~Game();
 
-    void run(int numPlayers);
-
     void onConnectionAccepted(const TcpServer *server, TcpSocket *socket) override;
 
     void onConnectionClosed(const TcpSocket *socket) override;
 
     void onDataArrived(TcpSocket *socket, nlohmann::json &json) override;
 
-    GameContext *getContext();
+    GameContext &getContext();
+
+    SpectatorsDispatcher *getSpectatorDispatcher() const;
 
 private:
     Player *getPlayerBySocket(const TcpSocket *socket);
 
-    GameContext *_context;
+    GameContext _context;
 
     std::string _securityKey;
     TcpServer *_playerServer;
-    std::vector<Player *> _players;
     SpectatorsDispatcher *_spectatorDispatcher;
 
 };

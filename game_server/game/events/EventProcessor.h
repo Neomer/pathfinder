@@ -14,9 +14,11 @@ class Player;
 class EventProcessor
 {
 public:
-    virtual bool isEventSupported(int eventId) = 0;
+    virtual ~EventProcessor() = default;
 
-    virtual void process(Player &player, const nlohmann::json &requestData, Game &game) = 0;
+    virtual bool isEventSupported(int eventId) const = 0;
+
+    virtual void process(Player &player, const nlohmann::json &requestData, Game &game) const = 0;
 };
 
 

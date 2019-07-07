@@ -7,7 +7,7 @@
 
 #include "Scenario.h"
 
-class Rubiih : public Card
+class Rubiih : public Scenario
 {
 public:
     ~Rubiih() override;
