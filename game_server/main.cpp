@@ -16,6 +16,8 @@ int main()
     srand(time(nullptr));
 
 #ifdef _WIN32
+    setlocale( LC_ALL, "en-US" );
+
     WSADATA wsaData;
     if (WSAStartup(WINSOCK_VERSION, &wsaData)) {
         throw std::runtime_error("Winsock initialization failed!");
