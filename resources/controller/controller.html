@@ -11,15 +11,17 @@
   crossorigin="anonymous"></script>
   <style>
     div.block {
-      display: flex;
-      flex-direction: column;
+      	display: flex;
+      	flex-direction: column;
+		padding-bottom: 10px;
     }
-    div.block span.title {
-      display: block;
-      font-weight: bold;
-    }
-    div.block div.content {
 
+    div.block span.title {
+		display: block;
+		font-weight: bold;
+    }
+
+    div.block div.content {
     }
   </style>
 </head>
@@ -35,8 +37,58 @@
       <button onclick="send_name();">Join game</button>
     </div>
   </div>
+  <div class="block">
+    <span class="title">2. Request available role cards</span>
+    <div class="content">
+      <button onclick="send(2)">Request</button>
+      <ul id="ulRoles"></ul>
+    </div>
+  </div>
+  <div class="block">
+    <span class="title">3. Start a game</span>
+    <div class="content">
+      <button onclick="send(1)">Start</button>
+    </div>
+  </div>
+  <div class="block">
+    <span class="title">4. Request locations</span>
+    <div class="content">
+      <button onclick="send(4)">Request</button>
+      <ul id="ulLocations"></ul>
+    </div>
+  </div>
   <script>
     var webSocket = null;
+	var events = [
+		// 0
+		function (data) {
+
+		},
+		// 1
+		function (data) {
+			var ul = $('#ulRoles');
+			ul.html('');
+			for (let card of data.cards) {
+				ul.append($('<li>[' + card.typeId + '] ' + card.title + '<button onclick="send(3, { roleId: ' + card.typeId + ' })">Select</button></li>'));
+			}
+		},
+		// 2
+		function (data) {
+
+		},
+		// 3
+		function (data) {
+
+		},
+		// 4
+		function (data) {
+			var ul = $('#ulLocations');
+			ul.html('');
+			for (let card of data.cards) {
+				ul.append($('<li>[' + card.typeId + '] ' + card.title + '<button onclick="send(5, { locationId: ' + card.typeId + ' })">Select</button></li>'));
+			}
+		},
+	];
 
     function ws_open() {
       webSocket = new WebSocket('ws://localhost:10555');
@@ -47,6 +99,8 @@
 
       webSocket.onmessage = event => {
          console.log('message: ' + event.data);
+         var json = JSON.parse(event.data);
+         events[json.eventId](json.data);
       };
 
       webSocket.onclose = event => {
@@ -57,7 +111,7 @@
 
 
     function send_name() {
-      send(10, { name: $('#txt').val() });
+      send(0, { name: $('#txt').val() });
     };
 
     function send(eventId, data) {

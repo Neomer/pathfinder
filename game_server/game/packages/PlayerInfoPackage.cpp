@@ -23,5 +23,10 @@ void PlayerInfoPackage::packageData(nlohmann::json &json) const
         _player.getRole()->toJson(roleJson);
         json["role"] = roleJson;
     }
+    if (_player.getLocation().get() != nullptr) {
+        nlohmann::json locationJson;
+        _player.getLocation()->toJson(locationJson);
+        json["location"] = locationJson;
+    }
 }
 

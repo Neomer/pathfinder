@@ -10,11 +10,6 @@ CardCollectionPackage::CardCollectionPackage(const std::vector<const CardMetadat
 
 }
 
-uint32_t CardCollectionPackage::getEventId() const
-{
-    return 1;
-}
-
 void CardCollectionPackage::packageData(nlohmann::json &json) const
 {
     nlohmann::json collection = nlohmann::json::array();
@@ -25,4 +20,5 @@ void CardCollectionPackage::packageData(nlohmann::json &json) const
     }
     json["cards"] = collection;
 }
+
 

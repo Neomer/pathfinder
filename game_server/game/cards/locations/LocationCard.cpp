@@ -41,5 +41,6 @@ void LocationCard::createDeck() {
 }
 
 void LocationCard::toJson(nlohmann::json &json) const {
+    Card::toJson(json);
     json["Deck"]["Size"] = _deck.size();
 }

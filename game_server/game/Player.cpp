@@ -73,3 +73,11 @@ const TcpSocket *Player::getTransportPipeConst() const
     return _socket;
 }
 
+const std::shared_ptr<Card> &Player::getLocation() const {
+    return _location;
+}
+
+void Player::setLocation(const std::shared_ptr<Card> &location) {
+    _location = location;
+}
+

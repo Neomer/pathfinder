@@ -5,7 +5,7 @@
 #include "RolesAvailableRequestEvent.h"
 #include "../Game.h"
 #include "../CardMetadataProvider.h"
-#include "../packages/CardCollectionPackage.h"
+#include "../packages/RolesCollectionPackage.h"
 
 bool RolesAvailableRequestEvent::isEventSupported(int eventId) const
 {
@@ -18,6 +18,6 @@ void RolesAvailableRequestEvent::process(Player &player, const nlohmann::json &r
             [](const CardMetadata *metadata) {
                 return metadata->getCardType() == CardMetadata::CardType::Role;
             });
-    CardCollectionPackage pkg(roles);
+    RolesCollectionPackage pkg(roles);
     player.getTransportPipe()->write(pkg);
 }

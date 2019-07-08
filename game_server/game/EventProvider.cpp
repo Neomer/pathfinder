@@ -36,6 +36,10 @@ const EventProcessor *EventProvider::getEventProcessor(int eventTypeId)
 
 #include "events/GameStartEvent.h"
 #include "events/UserChangeNameEvent.h"
+#include "events/RolesAvailableRequestEvent.h"
+#include "events/UserSelectRoleEvent.h"
+#include "events/LocationsAvailableRequestEvent.h"
+#include "events/PlayerMovedToLocationEvent.h"
 
 void EventProvider::load()
 {
@@ -43,6 +47,10 @@ void EventProvider::load()
 
     registerEventProcessor(new GameStartEvent());
     registerEventProcessor(new UserChangeNameEvent());
+    registerEventProcessor(new RolesAvailableRequestEvent());
+    registerEventProcessor(new UserSelectRoleEvent());
+    registerEventProcessor(new LocationsAvailableRequestEvent());
+    registerEventProcessor(new PlayerMovedToLocationEvent());
 
     Logger::getInstace().log("Event processors initialization complete.");
 }

@@ -24,6 +24,10 @@ public:
 
     void setRole(const std::shared_ptr<Card> &role);
 
+    const std::shared_ptr<Card> &getLocation() const;
+
+    void setLocation(const std::shared_ptr<Card> &location);
+
     void createUserDeck();
 
     TcpSocket *getTransportPipe();
@@ -35,6 +39,7 @@ private:
     Deck _activeDeck, _usedDeck;
     std::string _name;
     std::shared_ptr<Card> _role;
+    std::shared_ptr<Card> _location;
     const RoleCardMetadata *_roleMetadata;
 };
 

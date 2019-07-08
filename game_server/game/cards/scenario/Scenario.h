@@ -14,6 +14,8 @@ public:
 
     virtual void toJson(nlohmann::json &json) const;
 
+    const std::vector<std::shared_ptr<Card>> &getLocations() const;
+
 private:
     std::vector<std::shared_ptr<Card>> _locations;
 };

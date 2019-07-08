@@ -4,6 +4,7 @@
 
 #include "GameStartEvent.h"
 #include "../Game.h"
+#include "../packages/PlayersTurnPackage.h"
 
 bool GameStartEvent::isEventSupported(int eventId) const
 {
@@ -13,4 +14,6 @@ bool GameStartEvent::isEventSupported(int eventId) const
 void GameStartEvent::process(Player &player, const nlohmann::json &requestData, Game &game) const
 {
     game.getContext().getScenario()->loadLocations(game.getContext().getPlayers().size());
+    PlayersTurnPackage pkg(player, game.getContext().getMovesLeft());
+    player.getTransportPipe()->write(pkg);
 }

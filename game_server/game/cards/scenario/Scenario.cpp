@@ -46,10 +46,14 @@ void Scenario::loadLocations(uint8_t playersCount)
         if (loc.first <= playersCount) {
             auto locationMetadata = dynamic_cast<const LocationCardMetadata *>(CardMetadataProvider::getInstance().getMetadata(loc.second));
             if (locationMetadata == nullptr) {
-                Logger::getInstace().log("TypeId "s + std::to_string(loc.second) + " is not Location for scenario " + scenarioMetadata->getTypeName());
+                Logger::getInstace().error("TypeId "s + std::to_string(loc.second) + " is not Location for scenario " + scenarioMetadata->getTypeName());
                 continue;
             }
             _locations.push_back(locationMetadata->createInstance());
         }
     }
+}
+
+const std::vector<std::shared_ptr<Card>> &Scenario::getLocations() const {
+    return _locations;
 }
