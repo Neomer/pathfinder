@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ScenarioFieldComponent } from './scenario-field/scenario-field.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScenarioFieldComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

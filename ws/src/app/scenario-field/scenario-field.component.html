@@ -1,0 +1,15 @@
+<div class="field">
+    <h1>{{game.scenario.title}}</h1>
+    <div class="description">{{game.scenario.description}}</div>
+    <div class="user-list-container">
+        <ul>
+            <li *ngFor="let player of game.players">{{player.username}}</li>
+        </ul>
+    </div>
+    <div class="scenario-container">
+        <app-card [model]="game.scenario"></app-card>
+    </div>
+    <div class="card-collection-container">
+        <app-card *ngFor="let location of game.scenario.locations" [model]="location"></app-card>
+    </div>
+</div>
