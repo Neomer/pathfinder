@@ -11,12 +11,12 @@ export class ScenarioFieldComponent implements OnInit {
 
   private game: IGame = null;
 
-  constructor(private ts: TransmissionService) { 
+  constructor(private transmissionService: TransmissionService) { 
     
   }
 
   ngOnInit() {
-    //this.game = this.transmissionService.getGameInstance();
+    this.game = this.transmissionService.getGameInstance();
   }
 
 }
