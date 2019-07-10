@@ -1,4 +1,4 @@
-<div class="field">
+<div class="field" *ngIf="game != null">
     <h1>{{game.scenario.title}}</h1>
     <div class="description">{{game.scenario.description}}</div>
     <div class="user-list-container">
@@ -13,3 +13,4 @@
         <app-card *ngFor="let location of game.scenario.locations" [model]="location"></app-card>
     </div>
 </div>
+<span *ngIf="game == null">Game is null!</span>
