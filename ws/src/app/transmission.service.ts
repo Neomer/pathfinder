@@ -1,101 +1,54 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IGame } from '../interfaces/IGame';
+import { Observable, Observer, Subject } from 'rxjs';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransmissionService implements OnInit {
+export class TransmissionService {
 
-  private webSocketsProvider: WebSocket;
+  private webSocketsProvider: WebSocketSubject<any>;
+  private observable;
 
-  private game: IGame = {
-    turnsLeft: 50,
-    scenario: {
-      typeId: 800,
-      cardTypeId: 10,
-      cardTypeName: 'Scenario',
-      description: 'Если способность монстра обязывает вас перезарядить одну или несколько крат, сделайте это, а затем возьмите такое же количество карт.',
-      title: 'Рубиих!',
-      typeName: 'Rubiih',
-      locations: [{
-        cardTypeId: 12,
-        description: null,
-        title: 'Лес',
-        cardTypeName: 'Локация',
-        typeId: 1000,
-        typeName: 'Forest'
-      }, {
-        cardTypeId: 12,
-        description: null,
-        title: 'Набережная',
-        cardTypeName: 'Локация',
-        typeId: 1001,
-        typeName: 'Quay'
-      }, {
-        cardTypeId: 12,
-        description: null,
-        title: 'Ферма',
-        cardTypeName: 'Локация',
-        typeId: 1002,
-        typeName: 'Farm'
-      }, {
-        cardTypeId: 12,
-        description: null,
-        title: 'Деревянный мост',
-        cardTypeName: 'Локация',
-        typeId: 1003,
-        typeName: 'WoodenBridge'
-      }, {
-        cardTypeId: 12,
-        description: null,
-        title: 'Академия',
-        cardTypeName: 'Локация',
-        typeId: 1004,
-        typeName: 'Quay'
-      }]
-    },
-    players: [{
-      username: 'user1',
-      location: {
-        cardTypeId: 12,
-        description: null,
-        title: 'Лес',
-        cardTypeName: 'Локация',
-        typeId: 800,
-        typeName: 'Forest'
-      },
-      role: null
-    }, {
-      username: 'user2',
-      location: null,
-      role: null
-    }]
-  };
+  private observer;
 
-  constructor() { 
-    this.webSocketsProvider = new WebSocket('ws://localhost:11555');
-    this.webSocketsProvider.onopen = event => {
-      console.log('Connection ready!');
-    }
-    this.webSocketsProvider.onerror = event => {
-      console.log('Connection failed!');
-      console.log(event);
-    }
-    this.webSocketsProvider.onclose = event => {
-      console.log('Connection closed!');
-    }
-    this.webSocketsProvider.onmessage = event => {
-      console.log('Message: ' + event.data);
-    }
+  private game: Subject<IGame> = new Subject<IGame>();
+
+  constructor() {
+    const openEvents = new Subject<Event>();
+    this.webSocketsProvider = webSocket({
+      url: 'ws://localhost:11555',
+      openObserver: openEvents
+    });
+    openEvents.subscribe(msg => {
+      console.log('open');
+      this.sendData(0, null);
+    }, err => console.log(err), () => console.log('comlete'));
+
+    this.webSocketsProvider.subscribe( msg => {
+      console.log(msg);
+      if (msg.eventId === 0) {
+        this.game.next(msg.data);
+      }
+    }, err => console.log(err), () => console.log('comlete'));
   }
 
-  ngOnInit() {
-    console.log("hello!");
+  private const packagesProccessors = [
+    // 0
+  ];
+
+  private sendData(reqId: number, data) {
+    const pkg = {
+      requestId: reqId,
+      data
+    };
+    this.webSocketsProvider.next(pkg);
   }
 
-  getGameInstance() : IGame {
+
+  getGameInstance(): Subject<IGame> {
     return this.game;
   }
-  
 }
 

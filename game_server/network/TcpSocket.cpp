@@ -78,6 +78,7 @@ void TcpSocket::readDataProc() {
                         buffer[size] = 0;
                         try {
                             nlohmann::json jsonData = nlohmann::json::parse(buffer_ptr);
+                            Logger::getInstace().log("Received: "s + jsonData.dump());
                             _dataArrivedListener->onDataArrived(this, jsonData);
                         } catch (nlohmann::json::parse_error &ex) {
                             Logger::getInstace().log("Json parsing error: "s + ex.what());

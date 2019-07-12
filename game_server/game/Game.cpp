@@ -8,15 +8,16 @@
 #include "../Logger.h"
 #include "../network/WebSocketServer.h"
 #include "EventProvider.h"
+#include "packages/GameContextPackage.h"
 
 using namespace std::string_literals;
 
 Game::Game(Card *scenario, std::string_view securityKey) :
     _playerServer{ new WebSocketServer() },
     _securityKey{ securityKey },
-    _spectatorDispatcher{ new SpectatorsDispatcher(new WebSocketServer()) },
     _context{ }
 {
+    _spectatorDispatcher = new SpectatorsDispatcher(this, new WebSocketServer());
     _context.setScenario(dynamic_cast<Scenario *>(scenario));
 
     _playerServer->setConnectionAcceptedListener(this);
@@ -74,6 +75,10 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
         return;
     }
     processor->process(*player, json["data"], *this);
+
+    // Send updated game context to spectators
+    GameContextPackage gameContextPackage(getContext());
+    getSpectatorDispatcher()->broadcast(gameContextPackage);
 }
 
 Player *Game::getPlayerBySocket(const TcpSocket *socket) {

@@ -19,6 +19,12 @@ void LocationCardMetadata::toJson(nlohmann::json &json) const {
     CardMetadata::toJson(json);
 }
 
+LocationCard::LocationCard() :
+        _isClosed{ false }
+{
+
+}
+
 void LocationCard::createDeck() {
     auto metadata = dynamic_cast<const LocationCardMetadata *>(CardMetadataProvider::getInstance().getMetadata(getTypeId()));
     if (metadata == nullptr) {
@@ -43,4 +49,9 @@ void LocationCard::createDeck() {
 void LocationCard::toJson(nlohmann::json &json) const {
     Card::toJson(json);
     json["Deck"]["Size"] = _deck.size();
+    json["Closed"] = _isClosed;
+}
+
+void LocationCard::close() {
+    _isClosed = true;
 }

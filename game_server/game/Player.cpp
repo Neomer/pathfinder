@@ -30,7 +30,7 @@ const std::shared_ptr<Card> &Player::getRole() const {
 }
 
 void Player::setRole(const std::shared_ptr<Card> &role) {
-    if (role.get() == nullptr) {
+    if (role == nullptr) {
         throw std::logic_error("Null-pointer exception");
     }
     _role = role;
@@ -41,7 +41,7 @@ void Player::setRole(const std::shared_ptr<Card> &role) {
 }
 
 void Player::createUserDeck() {
-    if (_role.get() == nullptr) {
+    if (_role == nullptr) {
         throw std::logic_error("User don't select a role!");
     }
     Logger::getInstace().log("Start generating player's active deck...");
@@ -79,5 +79,19 @@ const std::shared_ptr<Card> &Player::getLocation() const {
 
 void Player::setLocation(const std::shared_ptr<Card> &location) {
     _location = location;
+}
+
+void Player::toJson(nlohmann::json &json) const {
+    json["username"] = getName();
+    if (getRole() != nullptr) {
+        json["role"] = getRole()->toJsonObject();
+    } else {
+        json["role"] = nullptr;
+    }
+    if (getLocation() != nullptr) {
+        json["location"] = getLocation()->toJsonObject();
+    } else {
+        json["location"] = nullptr;
+    }
 }
 

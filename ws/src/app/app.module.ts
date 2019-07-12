@@ -7,6 +7,7 @@ import { ScenarioFieldComponent } from './scenario-field/scenario-field.componen
 import { CardComponent } from './card/card.component';
 import { TransmissionService } from './transmission.service';
 import { LoggerService } from './logger.service';
+import { Observable } from 'rxjs';
 
 @NgModule({
   declarations: [

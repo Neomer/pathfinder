@@ -35,10 +35,6 @@ void ScenarioMetadata::toJson(nlohmann::json &json) const {
 
 }
 
-void Scenario::toJson(nlohmann::json &json) const {
-
-}
-
 void Scenario::loadLocations(uint8_t playersCount)
 {
     auto scenarioMetadata = dynamic_cast<const ScenarioMetadata *>(getMetadata());

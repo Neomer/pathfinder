@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_PACKAGE_H
 #define GAME_SERVER_PACKAGE_H
 
-#include "../../modules/json/single_include/nlohmann/json.hpp"
+#include "../../core/JsonSerializable.h"
 
-class Package
+class Package : public JsonSerializable
 {
 public:
     enum class ResultStatus
@@ -20,7 +20,7 @@ public:
 
     virtual ResultStatus getResultStatus() const = 0;
 
-    virtual void toJson(nlohmann::json &json) const;
+    void toJson(nlohmann::json &json) const override;
 };
 
 

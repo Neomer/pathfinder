@@ -8,21 +8,21 @@
 #include <memory>
 #include <string_view>
 #include <vector>
+#include "../../core/JsonSerializable.h"
 #include "Metadata.h"
 
 class CardMetadata;
 
-class Card
+class Card : public JsonSerializable
 {
 public:
-    virtual ~Card() {}
+    virtual ~Card() = default;
 
     virtual int getTypeId() const = 0;
 
     virtual const CardMetadata *getMetadata() const;
 
-    virtual void toJson(nlohmann::json &json) const;
-
+    void toJson(nlohmann::json &json) const override;
 };
 
 class ActiveCard : public Card

@@ -8,7 +8,7 @@
 #include "cards/scenario/Scenario.h"
 #include "Player.h"
 
-class GameContext
+class GameContext : public JsonSerializable
 {
 public:
     GameContext();
@@ -31,12 +31,19 @@ public:
 
     void nextTurn();
 
+    void start();
+
+    bool isStarted() const;
+
+    void toJson(nlohmann::json &json) const override;
+
 private:
     Scenario *_scenario;
     const ScenarioMetadata *_scenarioMetadata;
     uint8_t _movesLeft;
     std::vector<Player *> _players;
     uint8_t _currentPlayerIdx;
+    bool _isStarted;
 };
 
 

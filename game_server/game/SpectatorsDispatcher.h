@@ -13,13 +13,15 @@
 #include "../network/IDataArrivedListener.h"
 #include "../network/packages/Package.h"
 
+class Game;
+
 class SpectatorsDispatcher :
         public IConnectionAcceptedListener,
         public IConnectionClosedListener,
         public IDataArrivedListener
 {
 public:
-    explicit SpectatorsDispatcher(TcpServer *server);
+    explicit SpectatorsDispatcher(Game *game, TcpServer *server);
 
     ~SpectatorsDispatcher();
 
@@ -36,6 +38,8 @@ public:
 private:
     TcpServer *_server;
     std::vector<TcpSocket *> _spectators;
+
+    Game *_game;
 };
 
 

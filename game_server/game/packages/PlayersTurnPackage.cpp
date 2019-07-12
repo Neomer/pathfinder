@@ -22,7 +22,7 @@ void PlayersTurnPackage::packageData(nlohmann::json &json) const {
     playerJson["userName"] = _player.getName();
     if ( _player.getRole().get() != nullptr) {
         nlohmann::json playerRoleJson;
-        _player.getRole()->toJson(playerRoleJson);
+        _player.getRole()->toJsonObject(playerRoleJson);
         playerJson["role"] = playerRoleJson;
     }
     json["player"] = playerJson;

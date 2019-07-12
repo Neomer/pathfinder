@@ -10,12 +10,17 @@
 class LocationCard : public Card
 {
 public:
+    LocationCard();
+
     virtual void createDeck();
+
+    void close();
 
     virtual void toJson(nlohmann::json &json) const;
 
 private:
     std::vector<std::shared_ptr<Card>> _deck;
+    bool _isClosed;
 };
 
 class LocationCardMetadata : public CardMetadata

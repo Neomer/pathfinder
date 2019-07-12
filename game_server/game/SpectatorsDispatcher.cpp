@@ -5,8 +5,13 @@
 #include "../Logger.h"
 #include "../network/TcpSocket.h"
 #include "SpectatorsDispatcher.h"
+#include "packages/GameContextPackage.h"
+#include "Game.h"
 
-SpectatorsDispatcher::SpectatorsDispatcher(TcpServer *server) :
+using namespace std::string_literals;
+
+SpectatorsDispatcher::SpectatorsDispatcher(Game *game, TcpServer *server) :
+        _game{ game },
         _server(server)
 {
     Logger::getInstace().log("Initializing connection point for spectators.");
@@ -51,7 +56,15 @@ void SpectatorsDispatcher::onConnectionClosed(const TcpSocket *socket)
 
 void SpectatorsDispatcher::onDataArrived(TcpSocket *socket, nlohmann::json &json)
 {
-    Logger::getInstace().log("Spectator sent some data...");
+    Logger::getInstace().log("Spectator sent some data... ");
+    if (!json.contains("requestId")) {
+        throw std::logic_error("Corrupted package.");
+    }
+    uint32_t requestId = json["requestId"];
+    if (requestId == 0) {
+        GameContextPackage pkg(_game->getContext());
+        socket->write(pkg);
+    }
 }
 
 void SpectatorsDispatcher::broadcast(const Package &package)

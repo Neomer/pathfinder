@@ -6,7 +6,8 @@
 
 GameContext::GameContext() :
         _currentPlayerIdx{ 0 },
-        _movesLeft{ 50 }
+        _movesLeft{ 50 },
+        _isStarted{ false }
 {
 
 }
@@ -56,4 +57,23 @@ void GameContext::nextTurn()
 {
     _currentPlayerIdx = _currentPlayerIdx < _players.size() - 1 ? _currentPlayerIdx + 1 : 0;
     --_movesLeft;
+}
+
+void GameContext::start() {
+    _isStarted = true;
+}
+
+bool GameContext::isStarted() const {
+    return _isStarted;
+}
+
+void GameContext::toJson(nlohmann::json &json) const {
+    json["turnsLeft"] = getMovesLeft();
+    json["scenario"] = getScenario()->toJsonObject();
+
+    nlohmann::json::array_t arr;
+    for (auto player : getPlayers()) {
+        arr.push_back(player->toJsonObject());
+    }
+    json["players"] = arr;
 }

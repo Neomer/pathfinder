@@ -12,9 +12,9 @@
 #include "Deck.h"
 #include "../network/TcpSocket.h"
 
-class Player {
+class Player : public JsonSerializable {
 public:
-    Player(TcpSocket *socket);
+    explicit Player(TcpSocket *socket);
 
     const std::string &getName() const;
 
@@ -33,6 +33,8 @@ public:
     TcpSocket *getTransportPipe();
 
     const TcpSocket *getTransportPipeConst() const;
+
+    void toJson(nlohmann::json &json) const override;
 
 private:
     TcpSocket *_socket;

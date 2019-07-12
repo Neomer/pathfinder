@@ -143,3 +143,4 @@ void Card::toJson(nlohmann::json &json) const
 {
     getMetadata()->toJson(json);
 }
+

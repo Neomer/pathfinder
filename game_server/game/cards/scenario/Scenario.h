@@ -12,8 +12,6 @@ class Scenario : public Card
 public:
     virtual void loadLocations(uint8_t playersCount);
 
-    virtual void toJson(nlohmann::json &json) const;
-
     const std::vector<std::shared_ptr<Card>> &getLocations() const;
 
 private:
