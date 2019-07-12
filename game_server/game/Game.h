@@ -35,6 +35,8 @@ public:
 
     GameContext &getContext();
 
+    const GameContext &getContext() const;
+
     SpectatorsDispatcher *getSpectatorDispatcher() const;
 
 private:

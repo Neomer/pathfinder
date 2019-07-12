@@ -1,16 +1,20 @@
 <div class="field" *ngIf="game !== null && game.scenario !== null">
-    <h1>{{game.scenario.title}}</h1>
-    <div class="description">{{game.scenario.description}}</div>
+    <h1>{{game.scenario.metadata.title}}</h1>
+    <div class="description">{{game.scenario.metadata.description}}</div>
     <div class="user-list-container">
-        <ul>
-            <li *ngFor="let player of game.players">{{player.username}}</li>
-        </ul>
+        <table>
+            <tr *ngFor="let player of game.players">
+                <td>{{player.username}}</td>
+                <td><span *ngIf="player.role != null">[{{player.role.metadata.title}}]</span></td>
+                <td><span *ngIf="player.location != null">[{{player.location.metadata.title}}]</span></td>
+            </tr>
+        </table>
     </div>
     <div class="scenario-container">
-        <app-card [model]="game.scenario"></app-card>
+        <app-card [model]="game.scenario.metadata"></app-card>
     </div>
-    <div class="card-collection-container">
-        <app-card *ngFor="let location of game.scenario.locations" [model]="location.location"></app-card>
+    <div class="card-collection-container" *ngIf="game.scenario.locations != null">
+        <app-location-card *ngFor="let location of game.scenario.locations" [locationCard]="location"></app-location-card>
     </div>
 </div>
 <span *ngIf="game == null">Game is null!</span>

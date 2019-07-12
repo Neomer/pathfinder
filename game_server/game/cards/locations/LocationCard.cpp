@@ -12,11 +12,16 @@ CardMetadata::CardType LocationCardMetadata::getCardType() const {
 }
 
 void LocationCardMetadata::load() {
-
+    fillDeck(_deck);
 }
 
 void LocationCardMetadata::toJson(nlohmann::json &json) const {
     CardMetadata::toJson(json);
+}
+
+const std::vector<std::pair<int, CardMetadata::CardType>> &LocationCardMetadata::getLocationDeck() const
+{
+    return _deck;
 }
 
 LocationCard::LocationCard() :
@@ -48,8 +53,8 @@ void LocationCard::createDeck() {
 
 void LocationCard::toJson(nlohmann::json &json) const {
     Card::toJson(json);
-    json["Deck"]["Size"] = _deck.size();
-    json["Closed"] = _isClosed;
+    json["deck"]["size"] = _deck.size();
+    json["closed"] = _isClosed;
 }
 
 void LocationCard::close() {

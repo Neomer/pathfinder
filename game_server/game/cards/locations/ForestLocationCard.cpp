@@ -21,24 +21,16 @@ int ForestLocationCardMetadata::TypeId() const {
     return 1000;
 }
 
-const std::vector<std::pair<int, CardMetadata::CardType>> &ForestLocationCardMetadata::getLocationDeck() const {
-    return _deck;
-}
-
-ForestLocationCardMetadata::ForestLocationCardMetadata() {
-    _deck.emplace_back(4, CardType::Monster);
-    _deck.emplace_back(2, CardType::Barrier);
-    _deck.emplace_back(1, CardType::Weapon);
-    _deck.emplace_back(2, CardType::Thing);
-
-}
-
 std::shared_ptr<Card> ForestLocationCardMetadata::createInstance() const {
     return std::shared_ptr<Card>(new ForestLocationCard());
 }
 
-ForestLocationCard::~ForestLocationCard() {
-
+void ForestLocationCardMetadata::fillDeck(std::vector<std::pair<int, CardMetadata::CardType>> &deck)
+{
+    deck.emplace_back(4, CardType::Monster);
+    deck.emplace_back(2, CardType::Barrier);
+    deck.emplace_back(1, CardType::Weapon);
+    deck.emplace_back(2, CardType::Thing);
 }
 
 int ForestLocationCard::getTypeId() const {

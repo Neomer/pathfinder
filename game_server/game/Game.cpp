@@ -60,13 +60,6 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
         Logger::getInstace().error("User not found.");
         return;
     }
-    /*
-    if (player != _context.getCurrentPlayer()) {
-        Logger::getInstace().log("Package isn't from current player.");
-        return;
-    }
-     */
-    Logger::getInstace().log("Received: "s + json.dump());
     int eventId = json["eventId"];
 
     auto processor = EventProvider::getInstance().getEventProcessor(eventId);
@@ -92,4 +85,9 @@ Player *Game::getPlayerBySocket(const TcpSocket *socket) {
                          return item->getTransportPipeConst() == socket;
                      });
     return it == _context.getPlayers().end() ? nullptr : *it;
+}
+
+const GameContext &Game::getContext() const
+{
+    return _context;
 }

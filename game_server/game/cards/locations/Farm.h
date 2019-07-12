@@ -1,18 +1,20 @@
 //
-// Created by vinokurov on 29.06.2019.
+// Created by kir on 12.07.19.
 //
 
-#ifndef GAME_SERVER_FORESTLOCATIONCARD_H
-#define GAME_SERVER_FORESTLOCATIONCARD_H
+#ifndef GAME_SERVER_FARM_H
+#define GAME_SERVER_FARM_H
 
 #include "LocationCard.h"
 
-class ForestLocationCard : public LocationCard {
+class Farm : public LocationCard
+{
 public:
     int getTypeId() const override;
 };
 
-class ForestLocationCardMetadata : public LocationCardMetadata {
+class FarmMetadata : public LocationCardMetadata
+{
 public:
     std::string_view getCardTitle() const override;
 
@@ -20,13 +22,12 @@ public:
 
     const char *getDescription() const override;
 
-    int TypeId() const override;
-
     std::shared_ptr<Card> createInstance() const override;
+
+    int TypeId() const override;
 
 protected:
     void fillDeck(std::vector<std::pair<int, CardMetadata::CardType>> &deck) override;
-
 };
 
-#endif //GAME_SERVER_FORESTLOCATIONCARD_H
+#endif //GAME_SERVER_FARM_H

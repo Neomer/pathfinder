@@ -10,11 +10,9 @@ export class CardComponent implements OnInit {
 
   @Input() model: ICard;
 
-  constructor() {  }
+  constructor() { }
 
-  ngOnInit() {
-    console.log(this.model);
-  }
+  ngOnInit() { }
 
   getCardContainerStyle() {
     return {

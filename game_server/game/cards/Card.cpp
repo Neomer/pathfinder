@@ -112,8 +112,8 @@ const char *ActiveCardMetadata::attributeToString(CardAttribute attribute) {
         case CardAttribute::Priestess: return "Жрица";
         case CardAttribute::BeginnerLevel: return "Начальный уровень";
         case CardAttribute::AdvancedLevel: return "Продвинутый уровень";
-     }
-    return std::to_string((int) attribute).c_str();
+        case CardAttribute::Sword: return "Меч";
+    }
 }
 
 const char *CardMetadata::cardTypeToString(CardType type) {
@@ -132,7 +132,6 @@ const char *CardMetadata::cardTypeToString(CardType type) {
         case CardType::Barrier: return "Предграда";
         case CardType::Role: return "Роль";
     }
-    return std::to_string((int) type).c_str();
 }
 
 const CardMetadata *Card::getMetadata() const {
@@ -141,6 +140,6 @@ const CardMetadata *Card::getMetadata() const {
 
 void Card::toJson(nlohmann::json &json) const
 {
-    getMetadata()->toJson(json);
+    json["metadata"] = getMetadata()->toJsonObject();
 }
 

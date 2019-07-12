@@ -67,6 +67,8 @@ void CardMetadataProvider::registerMetadata(CardMetadata *metadata)
 #include "cards/armors/MagicBreastplate.h"
 #include "cards/things/AmuletOfLife.h"
 #include "cards/locations/ForestLocationCard.h"
+#include "cards/locations/Farm.h"
+#include "cards/locations/Quay.h"
 #include "cards/scenario/Rubiih.h"
 #include "cards/servants/ElderSkeleton.h"
 #include "cards/servants/PoisonTrap.h"
@@ -140,6 +142,8 @@ void CardMetadataProvider::init()
 
     //region Location metadata
     registerMetadata(new ForestLocationCardMetadata());
+    registerMetadata(new FarmMetadata());
+    registerMetadata(new QuayMetadata());
     //endregion
 
     //region Scenario metadata

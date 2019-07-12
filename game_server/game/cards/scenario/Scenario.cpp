@@ -45,11 +45,23 @@ void Scenario::loadLocations(uint8_t playersCount)
                 Logger::getInstace().error("TypeId "s + std::to_string(loc.second) + " is not Location for scenario " + scenarioMetadata->getTypeName());
                 continue;
             }
-            _locations.push_back(locationMetadata->createInstance());
+            auto locInstance = locationMetadata->createInstance();
+            dynamic_cast<LocationCard *>(locInstance.get())->createDeck();
+            _locations.push_back(locInstance);
         }
     }
 }
 
 const std::vector<std::shared_ptr<Card>> &Scenario::getLocations() const {
     return _locations;
+}
+
+void Scenario::toJson(nlohmann::json &json) const
+{
+    Card::toJson(json);
+    nlohmann::json::array_t locations;
+    for (auto &loc : getLocations()) {
+        locations.push_back(loc->toJsonObject());
+    }
+    json["locations"] = locations;
 }

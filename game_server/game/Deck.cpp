@@ -40,3 +40,8 @@ void Deck::pushBack(std::shared_ptr<Card> card)
 {
     _deck.push_back(card);
 }
+
+void Deck::toJson(nlohmann::json &json) const
+{
+    json["Size"] = _deck.size();
+}

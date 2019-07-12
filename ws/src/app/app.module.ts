@@ -8,12 +8,14 @@ import { CardComponent } from './card/card.component';
 import { TransmissionService } from './transmission.service';
 import { LoggerService } from './logger.service';
 import { Observable } from 'rxjs';
+import { LocationCardComponent } from './location-card/location-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScenarioFieldComponent,
-    CardComponent
+    CardComponent,
+    LocationCardComponent
   ],
   imports: [
     BrowserModule,

@@ -28,11 +28,17 @@ class LocationCardMetadata : public CardMetadata
 public:
     CardType getCardType() const override;
 
-    virtual const std::vector<std::pair<int, CardMetadata::CardType>> &getLocationDeck() const = 0;
+    virtual const std::vector<std::pair<int, CardMetadata::CardType>> &getLocationDeck() const;
 
     void toJson(nlohmann::json &json) const override;
 
     void load() override;
+
+protected:
+    virtual void fillDeck(std::vector<std::pair<int, CardMetadata::CardType>> &deck) = 0;
+
+private:
+    std::vector<std::pair<int, CardMetadata::CardType>> _deck;
 };
 
 

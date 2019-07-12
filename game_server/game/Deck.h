@@ -8,10 +8,11 @@
 #include <memory>
 #include <vector>
 #include <bits/shared_ptr.h>
+#include "../core/JsonSerializable.h"
 
 class Card;
 
-class Deck
+class Deck : public JsonSerializable
 {
 public:
     Deck();
@@ -23,6 +24,8 @@ public:
     std::shared_ptr<Card> pop();
 
     void shuffle();
+
+    void toJson(nlohmann::json &json) const override;
 
 private:
     std::vector<std::shared_ptr<Card>> _deck;
