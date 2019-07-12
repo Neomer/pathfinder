@@ -14,9 +14,7 @@ void CardCollectionPackage::packageData(nlohmann::json &json) const
 {
     nlohmann::json collection = nlohmann::json::array();
     for (auto metadata : _cards) {
-        nlohmann::json metaJson;
-        metadata->toJson(metaJson);
-        collection.push_back(metaJson);
+        collection.push_back(metadata->toJsonObject());
     }
     json["cards"] = collection;
 }

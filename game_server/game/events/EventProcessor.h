@@ -5,7 +5,7 @@
 #ifndef GAME_SERVER_EVENTPROCESSOR_H
 #define GAME_SERVER_EVENTPROCESSOR_H
 
-#include "../../modules/json/single_include/nlohmann/json.hpp"
+#include "../../network/packages/ErrorPackage.h"
 
 class Game;
 
@@ -15,6 +15,8 @@ class EventProcessor
 {
 public:
     virtual ~EventProcessor() = default;
+
+    virtual bool checkEventConditions(Player &player, Game &game, ErrorPackage **errorPackage) const;
 
     virtual bool isEventSupported(int eventId) const = 0;
 

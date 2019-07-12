@@ -74,11 +74,16 @@ void Game::onDataArrived(TcpSocket *socket, nlohmann::json &json) {
         Logger::getInstace().error("Unsupported event: "s + std::to_string(eventId));
         return;
     }
-    processor->process(*player, json["data"], *this);
-
-    // Send updated game context to spectators
-    GameContextPackage gameContextPackage(getContext());
-    getSpectatorDispatcher()->broadcast(gameContextPackage);
+    ErrorPackage *pkg;
+    if (processor->checkEventConditions(*player, *this, &pkg)) {
+        processor->process(*player, json["data"], *this);
+        // Send updated game context to spectators
+        GameContextPackage gameContextPackage(getContext());
+        getSpectatorDispatcher()->broadcast(gameContextPackage);
+    } else {
+        player->getTransportPipe()->write(*pkg);
+        delete pkg;
+    }
 }
 
 Player *Game::getPlayerBySocket(const TcpSocket *socket) {

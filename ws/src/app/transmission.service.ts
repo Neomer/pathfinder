@@ -34,10 +34,6 @@ export class TransmissionService {
     }, err => console.log(err), () => console.log('comlete'));
   }
 
-  private const packagesProccessors = [
-    // 0
-  ];
-
   private sendData(reqId: number, data) {
     const pkg = {
       requestId: reqId,

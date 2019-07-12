@@ -3,3 +3,7 @@
 //
 
 #include "EventProcessor.h"
+
+bool EventProcessor::checkEventConditions(Player &player, Game &game, ErrorPackage **errorPackage) const {
+    return true;
+}

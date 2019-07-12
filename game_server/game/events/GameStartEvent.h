@@ -12,6 +12,8 @@ class GameStartEvent : public EventProcessor
 public:
     ~GameStartEvent() override = default;
 
+    bool checkEventConditions(Player &player, Game &game, ErrorPackage **errorPackage) const override;
+
     bool isEventSupported(int eventId) const override;
 
     void process(Player &player, const nlohmann::json &requestData, Game &game) const override;

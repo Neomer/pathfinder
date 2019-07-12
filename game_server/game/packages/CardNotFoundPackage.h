@@ -9,14 +9,12 @@
 
 class CardNotFoundPackage : public ErrorPackage {
 public:
-    CardNotFoundPackage(int cardTypeId);
+    CardNotFoundPackage(uint32_t cardTypeId);
 
     std::string_view getErrorMessage() const override;
 
-    uint32_t getEventId() const override;
-
 private:
-    int _cardTypeId;
+    uint32_t _cardTypeId;
 };
 
 

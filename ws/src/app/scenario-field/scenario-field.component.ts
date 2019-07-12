@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransmissionService } from '../transmission.service';
 import { IGame } from '../../interfaces/IGame';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-scenario-field',
