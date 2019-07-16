@@ -28,9 +28,12 @@ export class TransmissionService {
 
     this.webSocketsProvider.subscribe( msg => {
       console.log(msg);
-      if (msg.eventId === 0) {
-        this.game.next(msg.data);
-      }
+      switch (msg.eventId) {
+        case 0: {
+          this.game.next(msg.data);
+          break;
+        }
+      } 
     }, err => console.log(err), () => console.log('comlete'));
   }
 
@@ -41,7 +44,6 @@ export class TransmissionService {
     };
     this.webSocketsProvider.next(pkg);
   }
-
 
   getGameInstance(): Subject<IGame> {
     return this.game;

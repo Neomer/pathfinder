@@ -6,7 +6,7 @@
 
 PlayersTurnPackage::PlayersTurnPackage(const Player &player, uint8_t turnsLeft) :
     _turnsLeft{ turnsLeft },
-    _player{ _player }
+    _player{ player }
 {
 
 }
@@ -17,14 +17,5 @@ uint32_t PlayersTurnPackage::getEventId() const {
 
 void PlayersTurnPackage::packageData(nlohmann::json &json) const {
     json["turnLeft"] = _turnsLeft;
-    /*
-    nlohmann::json playerJson;
-    playerJson["userName"] = _player.getName();
-    if ( _player.getRole().get() != nullptr) {
-        nlohmann::json playerRoleJson;
-        _player.getRole()->toJsonObject(playerRoleJson);
-        playerJson["role"] = playerRoleJson;
-    }
-    json["player"] = playerJson;
-    */
+    json["player"] = _player.toJsonObject();
 }

@@ -40,6 +40,7 @@ const EventProcessor *EventProvider::getEventProcessor(int eventTypeId)
 #include "events/UserSelectRoleEvent.h"
 #include "events/LocationsAvailableRequestEvent.h"
 #include "events/PlayerMovedToLocationEvent.h"
+#include "events/EndOfTurnEvent.h"
 
 void EventProvider::load()
 {
@@ -51,6 +52,7 @@ void EventProvider::load()
     registerEventProcessor(new UserSelectRoleEvent());
     registerEventProcessor(new LocationsAvailableRequestEvent());
     registerEventProcessor(new PlayerMovedToLocationEvent());
+    registerEventProcessor(new EndOfTurnEvent());
 
     Logger::getInstace().log("Event processors initialization complete.");
 }

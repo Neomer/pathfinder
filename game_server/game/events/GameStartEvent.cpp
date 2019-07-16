@@ -24,6 +24,7 @@ void GameStartEvent::process(Player &player, const nlohmann::json &requestData, 
         game.getContext().getScenario()->loadLocations(game.getContext().getPlayers().size());
         PlayersTurnPackage pkg(player, game.getContext().getMovesLeft());
         player.getTransportPipe()->write(pkg);
+        game.getSpectatorDispatcher()->broadcast(pkg);
     }
 }
 

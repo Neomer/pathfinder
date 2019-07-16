@@ -69,6 +69,7 @@ bool GameContext::isStarted() const {
 
 void GameContext::toJson(nlohmann::json &json) const {
     json["turnsLeft"] = getMovesLeft();
+    json["isStarted"] = isStarted();
     json["scenario"] = getScenario()->toJsonObject();
 
     nlohmann::json::array_t arr;

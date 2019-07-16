@@ -16,7 +16,11 @@ public:
 
     void close();
 
+    bool isClosed() const;
+
     virtual void toJson(nlohmann::json &json) const;
+
+    std::shared_ptr<Card> openCard();
 
 private:
     std::vector<std::shared_ptr<Card>> _deck;

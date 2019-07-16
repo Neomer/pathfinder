@@ -15,9 +15,6 @@ export class LocationCardComponent extends CardComponent implements OnInit  {
     super();
   }
 
-  ngOnInit() {
-    console.log(this.locationCard);
-    
-  }
+  ngOnInit() { }
 
 }

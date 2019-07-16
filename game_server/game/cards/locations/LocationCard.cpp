@@ -60,3 +60,18 @@ void LocationCard::toJson(nlohmann::json &json) const {
 void LocationCard::close() {
     _isClosed = true;
 }
+
+std::shared_ptr<Card> LocationCard::openCard()
+{
+    if (_deck.empty()) {
+        return nullptr;
+    }
+    auto topCard = _deck.back();
+    _deck.pop_back();
+    return topCard;
+}
+
+bool LocationCard::isClosed() const
+{
+    return _isClosed;
+}

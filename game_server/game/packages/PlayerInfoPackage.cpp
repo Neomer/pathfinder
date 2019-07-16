@@ -17,16 +17,6 @@ uint32_t PlayerInfoPackage::getEventId() const
 
 void PlayerInfoPackage::packageData(nlohmann::json &json) const
 {
-    json["userName"] = _player.getName();
-    if (_player.getRole().get() != nullptr) {
-        nlohmann::json roleJson;
-        _player.getRole()->toJson(roleJson);
-        json["role"] = roleJson;
-    }
-    if (_player.getLocation().get() != nullptr) {
-        nlohmann::json locationJson;
-        _player.getLocation()->toJson(locationJson);
-        json["location"] = locationJson;
-    }
+    _player.toJson(json);
 }
 
