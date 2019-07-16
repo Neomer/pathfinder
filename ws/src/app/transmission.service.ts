@@ -12,8 +12,9 @@ export class TransmissionService {
   private observable;
 
   private observer;
+  private game: IGame;
 
-  private game: Subject<IGame> = new Subject<IGame>();
+  private gameSubject: Subject<IGame> = new Subject<IGame>();
 
   constructor() {
     const openEvents = new Subject<Event>();
@@ -30,10 +31,11 @@ export class TransmissionService {
       console.log(msg);
       switch (msg.eventId) {
         case 0: {
-          this.game.next(msg.data);
+          this.game = msg.data;
           break;
         }
       } 
+      this.gameSubject.next(this.game);
     }, err => console.log(err), () => console.log('comlete'));
   }
 
@@ -46,7 +48,7 @@ export class TransmissionService {
   }
 
   getGameInstance(): Subject<IGame> {
-    return this.game;
+    return this.gameSubject;
   }
 }
 
