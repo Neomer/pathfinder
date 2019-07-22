@@ -21,11 +21,13 @@ public:
 
     void load() override;
 
+    void toJson(nlohmann::json &json) const override;
+
 protected:
     virtual void fillCardCheckConditions(CardCheckConditions &conditions) = 0;
 
 private:
-    CardCheckConditions _takenConditions;
+    CardCheckConditions _checkConditions;
 };
 
 

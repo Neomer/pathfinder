@@ -116,6 +116,30 @@ const char *ActiveCardMetadata::attributeToString(CardAttribute attribute) {
     }
 }
 
+const char *ActiveCardMetadata::skillToString(ActiveCardMetadata::Skill skill)
+{
+    switch (skill)
+    {
+        case Skill::Strength: return "Сила";
+        case Skill::Agility: return "Ловкость";
+        case Skill::Endurance: return "Выносливость";
+        case Skill::Intelligence: return "Интеллект";
+        case Skill::Wisdom: return "Мудрость";
+        case Skill::Charisma: return "Харизма";
+        case Skill::Charms: return "Чары";
+        case Skill::Knowledge: return "Знания";
+        case Skill::LongRange: return "Дальний бой";
+        case Skill::ShortRange: return "Ближний бой";
+        case Skill::Stamina: return "Стойкость";
+        case Skill::Attention: return "Внимание";
+        case Skill::Survival: return "Выживание";
+        case Skill::Faith: return "Вера";
+        case Skill::Stealth: return "Скрытность";
+        case Skill::Diplomacy: return "Дипломатия";
+        case Skill::Fight: return "Бой";
+    }
+}
+
 const char *CardMetadata::cardTypeToString(CardType type) {
     switch (type) {
         case CardType::Weapon: return "Оружие";

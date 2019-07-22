@@ -200,6 +200,8 @@ protected:
 
     static const char *attributeToString(CardAttribute attribute);
 
+    static const char *skillToString(Skill skill);
+
 private:
     std::vector<ActiveCardMetadata::CardAttribute> _attributes;
 };
