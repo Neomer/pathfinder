@@ -41,7 +41,7 @@ void DivinationMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttr
     attributes.push_back(CardAttribute::Faith);
 }
 
-void DivinationMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void DivinationMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms, Skill::Wisdom, Skill::Faith }, 6);
 }

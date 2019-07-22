@@ -13,7 +13,7 @@ set(SOURCES main.cpp core/string_functions.h
         network/WebSocket.cpp network/WebSocket.h
         game/cards/Metadata.cpp game/cards/Metadata.h
         game/cards/Card.cpp game/cards/Card.h
-        game/cards/HandTakableCardMetadata.cpp game/cards/HandTakableCardMetadata.h
+        game/cards/CheckableCardMetadata.cpp game/cards/CheckableCardMetadata.h
         game/CardMetadataProvider.cpp game/CardMetadataProvider.h
         game/cards/WeaponCard.cpp game/cards/WeaponCard.h
         game/cards/BlessingCard.cpp game/cards/BlessingCard.h

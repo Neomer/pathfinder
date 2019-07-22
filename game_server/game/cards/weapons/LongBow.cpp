@@ -43,6 +43,6 @@ void LongBowMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribu
     attributes.push_back(CardAttribute::TwoHand);
 }
 
-void LongBowMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void LongBowMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Agility, Skill::LongRange }, 5);
 }

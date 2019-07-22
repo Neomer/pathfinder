@@ -26,6 +26,11 @@ void CultistCardMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::BeginnerLevel);
 }
 
+void CultistCardMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 9);
+}
+
 
 int CultistCard::getTypeId() const {
     return 401;

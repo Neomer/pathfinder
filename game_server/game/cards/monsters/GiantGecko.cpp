@@ -32,3 +32,8 @@ void GiantGeckoMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttr
     attributes.push_back(CardAttribute::BeginnerLevel);
     attributes.push_back(CardAttribute::Animal);
 }
+
+void GiantGeckoMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 8);
+}

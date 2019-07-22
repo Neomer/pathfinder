@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_WEAPONCARD_H
 #define GAME_SERVER_WEAPONCARD_H
 
-#include "HandTakableCardMetadata.h"
+#include "CheckableCardMetadata.h"
 
-class WeaponCardMetadata : public HandTakableCardMetadata
+class WeaponCardMetadata : public CheckableCardMetadata
 {
 public:
     CardType getCardType() const final;

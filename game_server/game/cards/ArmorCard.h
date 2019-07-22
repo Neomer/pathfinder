@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_ARMORCARD_H
 #define GAME_SERVER_ARMORCARD_H
 
-#include "HandTakableCardMetadata.h"
+#include "CheckableCardMetadata.h"
 
-class ArmorCardMetadata : public HandTakableCardMetadata
+class ArmorCardMetadata : public CheckableCardMetadata
 {
 public:
     CardType getCardType() const override;

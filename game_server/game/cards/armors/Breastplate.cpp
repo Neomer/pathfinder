@@ -33,6 +33,6 @@ void BreastplateMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::HeavyArmor);
 }
 
-void BreastplateMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void BreastplateMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 4);
 }

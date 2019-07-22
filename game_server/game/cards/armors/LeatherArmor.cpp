@@ -33,6 +33,6 @@ void LeatherArmorMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAt
     attributes.push_back(CardAttribute::LightArmor);
 }
 
-void LeatherArmorMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void LeatherArmorMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 2);
 }

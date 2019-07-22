@@ -42,7 +42,7 @@ void MagicDetectionMetadata::fillAttributes(std::vector<ActiveCardMetadata::Card
     attributes.push_back(CardAttribute::Faith);
 }
 
-void MagicDetectionMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void MagicDetectionMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms, Skill::Wisdom, Skill::Faith }, 2);
 }

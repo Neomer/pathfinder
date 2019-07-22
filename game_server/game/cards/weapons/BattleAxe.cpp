@@ -42,6 +42,6 @@ void BattleAxeMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::Slashing);
 }
 
-void BattleAxeMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void BattleAxeMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 8);
 }

@@ -42,6 +42,6 @@ void SesquialteralSwordMetadata::fillAttributes(std::vector<ActiveCardMetadata::
     attributes.push_back(CardAttribute::Slashing);
 }
 
-void SesquialteralSwordMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void SesquialteralSwordMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 8);
 }

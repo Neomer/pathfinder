@@ -41,7 +41,7 @@ void MysticalArmorMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardA
     attributes.push_back(CardAttribute::Charms);
 }
 
-void MysticalArmorMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void MysticalArmorMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms }, 4);
 }

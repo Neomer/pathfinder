@@ -42,6 +42,6 @@ void DartsMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Piercing);
 }
 
-void DartsMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void DartsMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Agility, Skill::LongRange }, 4);
 }

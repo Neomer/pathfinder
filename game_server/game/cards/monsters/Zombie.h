@@ -27,6 +27,8 @@ public:
 
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
+
+    void fillCardCheckConditions(CardCheckConditions &conditions) override;
 };
 
 #endif //GAME_SERVER_ZOMBIE_H

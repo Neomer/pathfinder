@@ -39,3 +39,8 @@ void SirenMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::AdvancedLevel);
     attributes.push_back(CardAttribute::Siren);
 }
+
+void SirenMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 8);
+}

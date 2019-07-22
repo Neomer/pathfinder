@@ -34,6 +34,6 @@ void MagicBreastplateMetadata::fillAttributes(std::vector<ActiveCardMetadata::Ca
     attributes.push_back(CardAttribute::Magic);
 }
 
-void MagicBreastplateMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void MagicBreastplateMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 4);
 }

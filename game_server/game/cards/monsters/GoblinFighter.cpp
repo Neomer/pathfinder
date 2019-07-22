@@ -33,3 +33,8 @@ void GoblinFighterMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardA
     attributes.push_back(CardAttribute::Goblin);
     attributes.push_back(CardAttribute::Fighter);
 }
+
+void GoblinFighterMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 9);
+}

@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_BLESSINGCARD_H
 #define GAME_SERVER_BLESSINGCARD_H
 
-#include "HandTakableCardMetadata.h"
+#include "CheckableCardMetadata.h"
 
-class BlessingCardMetadata : public HandTakableCardMetadata
+class BlessingCardMetadata : public CheckableCardMetadata
 {
 public:
     CardType getCardType() const override;

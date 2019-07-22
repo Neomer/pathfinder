@@ -40,7 +40,7 @@ void EvilDetectionMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardA
     attributes.push_back(CardAttribute::Faith);
 }
 
-void EvilDetectionMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void EvilDetectionMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Wisdom, Skill::Faith }, 4);
 }

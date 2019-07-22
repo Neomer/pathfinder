@@ -33,3 +33,8 @@ void SpellCasterMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAtt
     attributes.push_back(CardAttribute::Witchcraft);
     attributes.push_back(CardAttribute::Veteran);
 }
+
+void SpellCasterMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 8);
+}

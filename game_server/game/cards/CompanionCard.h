@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_COMPANIONCARD_H
 #define GAME_SERVER_COMPANIONCARD_H
 
-#include "HandTakableCardMetadata.h"
+#include "CheckableCardMetadata.h"
 
-class CompanionCardMetadata : public HandTakableCardMetadata
+class CompanionCardMetadata : public CheckableCardMetadata
 {
 public:
     CardType getCardType() const override;

@@ -5,9 +5,9 @@
 #ifndef GAME_SERVER_SPELLCARD_H
 #define GAME_SERVER_SPELLCARD_H
 
-#include "HandTakableCardMetadata.h"
+#include "CheckableCardMetadata.h"
 
-class SpellCardMetadata : public HandTakableCardMetadata
+class SpellCardMetadata : public CheckableCardMetadata
 {
 public:
     CardType getCardType() const override;

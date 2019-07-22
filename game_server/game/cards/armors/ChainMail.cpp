@@ -33,6 +33,6 @@ void ChainMailMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::BeginnerLevel);
 }
 
-void ChainMailMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void ChainMailMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 3);
 }

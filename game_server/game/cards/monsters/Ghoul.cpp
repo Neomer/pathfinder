@@ -33,3 +33,8 @@ void GhoulMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Ghoul);
     attributes.push_back(CardAttribute::AdvancedLevel);
 }
+
+void GhoulMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 11);
+}

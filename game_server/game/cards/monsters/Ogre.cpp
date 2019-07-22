@@ -33,3 +33,8 @@ void OgreMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute>
     attributes.push_back(CardAttribute::Ogre);
 
 }
+
+void OgreMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 14);
+}

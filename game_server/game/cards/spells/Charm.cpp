@@ -41,7 +41,7 @@ void CharmMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Psycho);
 }
 
-void CharmMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void CharmMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms }, 4);
 }

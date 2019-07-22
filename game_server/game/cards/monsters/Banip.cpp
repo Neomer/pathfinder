@@ -30,6 +30,11 @@ void BanipMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::AdvancedLevel);
 }
 
+void BanipMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 9);
+}
+
 int Banip::getTypeId() const {
     return 402;
 }

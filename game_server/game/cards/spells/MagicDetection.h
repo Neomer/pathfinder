@@ -29,7 +29,7 @@ public:
 protected:
     void fillAttributes(std::vector<ActiveCardMetadata::CardAttribute> &attributes) override;
 
-    void fillCardsTakenConditions(CardTakenConditions &conditions) override;
+    void fillCardCheckConditions(CardCheckConditions &conditions) override;
 };
 
 #endif //GAME_SERVER_MAGICDETECTION_H

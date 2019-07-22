@@ -40,3 +40,8 @@ void ScoutMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Shooter);
     attributes.push_back(CardAttribute::Veteran);
 }
+
+void ScoutMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 8);
+}

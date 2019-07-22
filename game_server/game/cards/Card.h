@@ -174,6 +174,7 @@ public:
         Faith,          // Вера
         Stealth,        // Скрытность
         Diplomacy,      // Дипломатия
+        Fight,          // Бой
     };
 
     enum class Mastery

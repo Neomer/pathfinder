@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "cards/RoleCard.h"
 #include "CardMetadataProvider.h"
-#include "cards/HandTakableCardMetadata.h"
+#include "cards/CheckableCardMetadata.h"
 
 using namespace std::string_literals;
 
@@ -49,7 +49,7 @@ void Player::createUserDeck() {
     for (auto &cardType : startHandCardTypes) {
         auto availableCards = CardMetadataProvider::getInstance().getMetadata(
                 [cardType](const CardMetadata *metadata) -> bool {
-                    auto handTakable = dynamic_cast<const HandTakableCardMetadata *>(metadata);
+                    auto handTakable = dynamic_cast<const CheckableCardMetadata *>(metadata);
                     return handTakable != nullptr && handTakable->isBeginnerLevel() && handTakable->getCardType() == cardType.first;
                 });
         if (availableCards.empty()) {

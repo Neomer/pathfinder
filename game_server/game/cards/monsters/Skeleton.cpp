@@ -40,3 +40,8 @@ void SkeletonMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttrib
     attributes.push_back(CardAttribute::Undead);
     attributes.push_back(CardAttribute::Skeleton);
 }
+
+void SkeletonMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 8);
+}

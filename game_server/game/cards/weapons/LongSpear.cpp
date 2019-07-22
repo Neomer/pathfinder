@@ -43,6 +43,6 @@ void LongSpearMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::TwoHand);
 }
 
-void LongSpearMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void LongSpearMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 5);
 }

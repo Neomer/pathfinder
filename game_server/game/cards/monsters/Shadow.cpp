@@ -39,3 +39,8 @@ void ShadowMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribut
     attributes.push_back(CardAttribute::Undead);
     attributes.push_back(CardAttribute::Disembodied);
 }
+
+void ShadowMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 13);
+}

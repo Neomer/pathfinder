@@ -41,7 +41,7 @@ void HelpMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute>
     attributes.push_back(CardAttribute::Faith);
 }
 
-void HelpMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void HelpMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Wisdom, Skill::Faith }, 6);
 }

@@ -43,6 +43,6 @@ void GlaiveMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribut
     attributes.push_back(CardAttribute::TwoHand);
 }
 
-void GlaiveMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void GlaiveMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 9);
 }

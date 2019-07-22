@@ -33,3 +33,8 @@ void MercenaryMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::Fighter);
     attributes.push_back(CardAttribute::Veteran);
 }
+
+void MercenaryMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 10);
+}

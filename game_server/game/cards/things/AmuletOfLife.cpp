@@ -30,7 +30,7 @@ void AmuletOfLifeMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAt
     attributes.push_back(CardAttribute::Decoration);
 }
 
-void AmuletOfLifeMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void AmuletOfLifeMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms }, 4);
 }

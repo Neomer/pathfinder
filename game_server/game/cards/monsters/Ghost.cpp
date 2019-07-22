@@ -34,3 +34,9 @@ void GhostMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute
     attributes.push_back(CardAttribute::Ghost);
     attributes.push_back(CardAttribute::AdvancedLevel);
 }
+
+void GhostMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 12);
+    conditions.emplace_back(std::vector{ Skill::Wisdom, Skill::Faith }, 8);
+}

@@ -43,7 +43,7 @@ void AcidArrowMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttri
     attributes.push_back(CardAttribute::Acid);
 }
 
-void AcidArrowMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void AcidArrowMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Intelligence, Skill::Charms }, 4);
 }

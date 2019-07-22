@@ -40,3 +40,8 @@ void PlagueZombieMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAt
     attributes.push_back(CardAttribute::Undead);
     attributes.push_back(CardAttribute::Zombie);
 }
+
+void PlagueZombieMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
+{
+    conditions.emplace_back(std::vector{ Skill::Fight }, 11);
+}

@@ -42,6 +42,6 @@ void MaceMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribute>
     attributes.push_back(CardAttribute::Crushing);
 }
 
-void MaceMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void MaceMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Strength, Skill::ShortRange }, 4);
 }

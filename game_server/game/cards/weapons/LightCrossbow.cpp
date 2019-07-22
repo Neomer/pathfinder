@@ -42,6 +42,6 @@ void LightCrossbowMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardA
     attributes.push_back(CardAttribute::Piercing);
 }
 
-void LightCrossbowMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void LightCrossbowMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Agility, Skill::LongRange }, 4);
 }

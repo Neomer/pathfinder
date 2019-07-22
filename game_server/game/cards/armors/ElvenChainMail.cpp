@@ -34,6 +34,6 @@ void ElvenChainMailMetadata::fillAttributes(std::vector<ActiveCardMetadata::Card
     attributes.push_back(CardAttribute::Magic);
 }
 
-void ElvenChainMailMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions) {
+void ElvenChainMailMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions) {
     conditions.emplace_back(std::vector{ Skill::Endurance, Skill::Stamina }, 6);
 }

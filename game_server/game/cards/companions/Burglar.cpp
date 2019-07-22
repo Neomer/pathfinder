@@ -40,7 +40,7 @@ void BurglarMetadata::fillAttributes(std::vector<ActiveCardMetadata::CardAttribu
     attributes.push_back(CardAttribute::Human);
 }
 
-void BurglarMetadata::fillCardsTakenConditions(HandTakableCardMetadata::CardTakenConditions &conditions)
+void BurglarMetadata::fillCardCheckConditions(CheckableCardMetadata::CardCheckConditions &conditions)
 {
     conditions.emplace_back(std::vector{ Skill::Agility, Skill::Stealth }, 7);
     conditions.emplace_back(std::vector{ Skill::Charisma, Skill::Diplomacy }, 6);
