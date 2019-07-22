@@ -9,6 +9,7 @@
 #include "../packages/LocationNotSelectedPackage.h"
 #include "../packages/LocationIsClosedPackage.h"
 #include "../cards/locations/LocationCard.h"
+#include "../packages/CardInfoPackage.h"
 
 bool ExploreLocationEvent::checkEventConditions(Player &player, Game &game, ErrorPackage **errorPackage) const
 {
@@ -41,5 +42,7 @@ void ExploreLocationEvent::process(Player &player, const nlohmann::json &request
         Logger::getInstace().error("Колода пуста!");
         return;
     }
-
+    CardInfoPackage pkg(card);
+    player.getTransportPipe()->write(pkg);
+    game.getSpectatorDispatcher()->broadcast(pkg);
 }

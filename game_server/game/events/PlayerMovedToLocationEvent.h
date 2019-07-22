@@ -15,6 +15,8 @@ public:
     bool isEventSupported(int eventId) const override;
 
     void process(Player &player, const nlohmann::json &requestData, Game &game) const override;
+
+    bool checkEventConditions(Player &player, Game &game, ErrorPackage **errorPackage) const override;
 };
 
 
