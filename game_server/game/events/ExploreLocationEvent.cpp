@@ -42,6 +42,7 @@ void ExploreLocationEvent::process(Player &player, const nlohmann::json &request
         Logger::getInstace().error("Колода пуста!");
         return;
     }
+    game.getContext().setActiveCard(card);
     CardInfoPackage pkg(card);
     player.getTransportPipe()->write(pkg);
     game.getSpectatorDispatcher()->broadcast(pkg);

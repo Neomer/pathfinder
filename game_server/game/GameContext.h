@@ -37,13 +37,20 @@ public:
 
     void toJson(nlohmann::json &json) const override;
 
+    void addOnBeforeTurnBeginActions();
+
+    std::shared_ptr<Card> getActiveCard() const;
+
+    void setActiveCard(std::shared_ptr<Card> activeCard);
+
 private:
-    Scenario *_scenario;
-    const ScenarioMetadata *_scenarioMetadata;
+    Scenario *_scenario{};
+    const ScenarioMetadata *_scenarioMetadata{};
     uint8_t _movesLeft;
     std::vector<Player *> _players;
     uint8_t _currentPlayerIdx;
     bool _isStarted;
+    std::shared_ptr<Card> _activeCard;
 };
 
 
