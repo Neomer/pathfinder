@@ -30,11 +30,19 @@ export class TransmissionService {
     this.webSocketsProvider.subscribe( msg => {
       console.log(msg);
       switch (msg.eventId) {
-        case 0: {
+        // game context
+        case 0: { 
           this.game = msg.data;
           break;
         }
+
+        // location explore
+        case 10: {
+          this.game.activeCard = msg;
+          break;
+        }
       } 
+      console.log(this.game);
       this.gameSubject.next(this.game);
     }, err => console.log(err), () => console.log('comlete'));
   }

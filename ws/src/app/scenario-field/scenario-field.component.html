@@ -1,20 +1,24 @@
-<div class="field" *ngIf="game !== null && game.scenario !== null">
-    <h1>{{game.scenario.metadata.title}}</h1>
-    <div class="description">{{game.scenario.metadata.description}}</div>
-    <div class="user-list-container">
-        <table>
-            <tr *ngFor="let player of game.players">
-                <td>{{player.username}}</td>
-                <td><span *ngIf="player.role != null">[{{player.role.metadata.title}}]</span></td>
-                <td><span *ngIf="player.location != null">[{{player.location.metadata.title}}]</span></td>
-            </tr>
-        </table>
+<ng-container *ngIf="game.scenario !== null; else scenarioIsNull">
+    <div class="field">
+        <h1>{{game.scenario.metadata.title}}</h1>
+        <div class="description">{{game.scenario.metadata.description}}</div>
+        <div class="user-list-container">
+            <table>
+                <tr *ngFor="let player of game.players">
+                    <td>{{player.username}}</td>
+                    <td><span *ngIf="player.role != null">[{{player.role.metadata.title}}]</span></td>
+                    <td><span *ngIf="player.location != null">[{{player.location.metadata.title}}]</span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="scenario-container">
+            <app-card [model]="game.scenario.metadata"></app-card>
+        </div>
+        <div class="card-collection-container" *ngIf="game.scenario.locations != null">
+            <app-location-card *ngFor="let location of game.scenario.locations" [locationCard]="location"></app-location-card>
+        </div>
     </div>
-    <div class="scenario-container">
-        <app-card [model]="game.scenario.metadata"></app-card>
-    </div>
-    <div class="card-collection-container" *ngIf="game.scenario.locations != null">
-        <app-location-card *ngFor="let location of game.scenario.locations" [locationCard]="location"></app-location-card>
-    </div>
-</div>
-<span *ngIf="game == null">Game is null!</span>
+    </ng-container>
+<ng-template #scenarioIsNull>
+    <span class="error">Scenarion is null</span>
+</ng-template>

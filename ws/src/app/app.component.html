@@ -1,1 +1,40 @@
-<app-scenario-field></app-scenario-field>
+<ng-container *ngIf="game == null; else gameIsNotNullTemplate">
+    <span class="error">Server unavailable!</span>
+</ng-container>
+<ng-template #gameIsNotNullTemplate>
+    <div class="field">
+        <h1>{{game.scenario.metadata.title}}</h1>
+        <div class="description">{{game.scenario.metadata.description}}</div>
+        <div class="user-list-container">
+            <table>
+                <tr *ngFor="let player of game.players">
+                    <td>{{player.username}}</td>
+                    <td><span *ngIf="player.role != null">[{{player.role.metadata.title}}]</span></td>
+                    <td><span *ngIf="player.location != null">[{{player.location.metadata.title}}]</span></td>
+                </tr>
+            </table>
+        </div>
+        <ng-container *ngIf="game.activeCard !== null; else activeCardIsNotNullTemplate">
+            <div class="scenario-container">
+                <app-card [model]="game.activeCard.metadata"></app-card>
+            </div>
+            <div class="card-collection-container" *ngIf="game.scenario.locations != null">
+                <app-location-card *ngFor="let location of game.scenario.locations" [locationCard]="location"></app-location-card>
+            </div>
+        </ng-container>
+        <ng-template #activeCardIsNotNullTemplate>
+            <app-scenario-field></app-scenario-field>
+            <div class="scenario-container">
+                <app-card [model]="game.scenario.metadata"></app-card>
+            </div>
+            <div class="card-collection-container" *ngIf="game.scenario.locations != null">
+                <app-location-card *ngFor="let location of game.scenario.locations" [locationCard]="location"></app-location-card>
+            </div>
+        </ng-template>
+    
+
+    </div>
+
+</ng-template>
+
+

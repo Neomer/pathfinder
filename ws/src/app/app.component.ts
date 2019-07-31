@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IGame } from '../interfaces/IGame';
+import { TransmissionService } from './transmission.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  constructor() { }
+
+  private game: IGame = null;
+
+  constructor(private transmissionService: TransmissionService) { 
+    this.transmissionService.getGameInstance().subscribe((game: IGame) => this.game = game, null, null);
+  }
 
   ngOnInit() { }
 }

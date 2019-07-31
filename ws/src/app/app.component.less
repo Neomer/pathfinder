@@ -1,0 +1,58 @@
+div.field {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .description {
+        width:60vw;
+        background-color: #fff;
+        min-height: 3em;
+        border: 1px solid #bababa;
+        padding: 15px;
+        margin: 15px;
+    }
+
+    div.scenario-container {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    div.card-collection-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    h1 {
+        padding: 0;
+        margin: 0;
+        padding-top: 1em;
+        margin-bottom: 1em;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    div.user-list-container {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        border: 1px solid #bababa;
+        width: 10vw;
+        overflow: hidden;
+        padding: 1em;
+        background-color: #fff;
+        border-radius: .76em;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

@@ -9,13 +9,15 @@ import { TransmissionService } from './transmission.service';
 import { LoggerService } from './logger.service';
 import { Observable } from 'rxjs';
 import { LocationCardComponent } from './location-card/location-card.component';
+import { ExplorationFieldComponent } from './exploration-field/exploration-field.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScenarioFieldComponent,
     CardComponent,
-    LocationCardComponent
+    LocationCardComponent,
+    ExplorationFieldComponent
   ],
   imports: [
     BrowserModule,
